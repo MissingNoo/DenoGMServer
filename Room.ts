@@ -1,5 +1,5 @@
 import { sendMessage } from "./misc.ts";
-import { getPlayerById, Player } from "./Player.ts";
+import { Player } from "./Player.ts";
 
 export type Room = {
   RoomId: number;
@@ -23,20 +23,14 @@ export function createRoom(roomName: string): Room {
   return newRoom;
 }
 
-
-
 export function getRoomByName(roomName: string): Room | undefined {
   return rooms.find((room) => room.RoomName === roomName);
 }
 
 export function playerInRoom(
-  playerId: string | undefined
+  player: Player,
 ): boolean {
-  if (!playerId) {
-    console.log(`[Room] Invalid playerId: ${playerId}`);
-    return false;
-  }
-  return getPlayerById(playerId)?.room !== "";
+  return player.room !== "";
 }
 
 export function sendMessageToRoom(

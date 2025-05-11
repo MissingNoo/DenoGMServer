@@ -17,35 +17,24 @@ export type Player = {
 
 export const players: Player[] = [];
 
-export function getPlayerById(id: string): Player | undefined {
-  return players.find((player) => player.uuid === id);
-}
-
-export function getPlayerUUIDByAddress(
-  address: string,
-  port: number,
-): string | undefined {
-  return players.find(
-    (player) => player.address === address && player.port === port,
-  )?.uuid || undefined;
-}
 
 export function joinRoom(
-  playerId: string,
+  player: Player,
   roomName: string,
 ): Player | undefined {
-  const player = getPlayerById(playerId);
   const room = rooms.find((room) => room.RoomName === roomName);
-  if (!player) {
-    console.log(`[Player] Player ${playerId} not found`);
-    return undefined;
-  }  
   if (!room) {
     console.log(`[Player] Room ${roomName} not found`);
-    return undefined;
+    return;
   }
-  if (playerInRoom(playerId)) {
-    console.log(`[Player] Player ${playerId} already in a room`);
+  if (playerInRoom(player)) {
+    console.log(`[Player] Player ${player.uuid} already in a room`);
+    sendMessage(
+      "joinRoomFailed",
+      {},
+      player.address,
+      player.port,
+    );
   } else {
     player.room = room.RoomName;
     room.Players.push(player);
@@ -56,15 +45,17 @@ export function joinRoom(
       player.address,
       player.port,
     );
+    sendMessageToRoom(
+      player.room,
+      "playersInRoom",
+      { players: room.Players },
+      player,
+      true,
+    );
   }
-  return player;
 }
 
-export function leaveRoom(playerId: string): Player | undefined {
-  const player = getPlayerById(playerId);
-  if (!player) {
-    return undefined;
-  }
+export function leaveRoom(player: Player) {
   const room = getRoomByName(player.room);
   if (room) {
     player.room = "";
@@ -72,21 +63,10 @@ export function leaveRoom(playerId: string): Player | undefined {
     sendMessageToRoom(
       room.RoomName,
       "playerLeft",
-      { uuid: player.uuid, players: JSON.stringify(room.Players) },
+      { uuid: player.uuid },
       player,
       true,
     );
     console.log(`[Player] Player ${player.name} left room ${room.RoomName}`);
   }
-  
-  return player;
-}
-
-export function getPlayerRoom(playerId: string): string | undefined {
-  const player = getPlayerById(playerId);
-  if (!player) {
-    console.log(`[Player] Player ${playerId} not found`);
-    return undefined;
-  }
-  return player.room;
 }

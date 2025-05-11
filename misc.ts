@@ -1,4 +1,5 @@
 import { server } from "./main.ts";
+
 export function sendMessage(
   type: string,
   // deno-lint-ignore no-explicit-any
