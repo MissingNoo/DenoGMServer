@@ -5,5 +5,15 @@
   },
 
   "lib": ["deno.ns", "dom"],
-  "strict": true
+  "strict": true,
+  "compilerOptions": {
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
+    "strict": true
+  },
+  "unstable": [
+    "sloppy-imports"
+  ]
 }
