@@ -1,31 +1,62 @@
-import { Player } from "./Player.ts";
+import { sendMessage } from "./misc.ts";
+import { getPlayerById, Player } from "./Player.ts";
 
 export type Room = {
   RoomId: number;
   Players: Player[];
   RoomName: string;
+  password: string | undefined;
 };
 export const rooms: Room[] = [];
+
 export function createRoom(roomName: string): Room {
   const roomId = rooms.length + 1;
   const newRoom: Room = {
     RoomId: roomId,
     Players: [],
     RoomName: roomName,
+    password: undefined,
   };
   rooms.push(newRoom);
   console.log(`[Room] Created room: ${roomName} with ID: ${roomId}`);
-  console.log(`[Room] Current rooms: ${JSON.stringify(rooms)}`);
   console.log(`[Room] Current room count: ${rooms.length}`);
   return newRoom;
 }
 
-export function getRoomById(roomId: number): Room | undefined {
-  return rooms.find((room) => room.RoomId === roomId);
-}
+
 
 export function getRoomByName(roomName: string): Room | undefined {
   return rooms.find((room) => room.RoomName === roomName);
+}
+
+export function playerInRoom(
+  playerId: string | undefined
+): boolean {
+  if (!playerId) {
+    console.log(`[Room] Invalid playerId: ${playerId}`);
+    return false;
+  }
+  return getPlayerById(playerId)?.room !== "";
+}
+
+export function sendMessageToRoom(
+  roomName: string,
+  type: string,
+  message: unknown,
+  owner: Player,
+  sendToOwner: boolean = false,
+): void {
+  const room = getRoomByName(roomName);
+  if (!room) {
+    console.log(`[Room] Room ${roomName} not found`);
+    return;
+  }
+  room.Players.forEach((player) => {
+    if (player.uuid === owner.uuid && !sendToOwner) {
+      return;
+    }
+    sendMessage(type, message, player.address, player.port);
+  });
 }
 
 export function listPlayersInRoom(roomName: string): Player[] | undefined {
