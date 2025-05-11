@@ -1,14 +1,16 @@
 import { getRoomByName, rooms } from "./Room.ts";
 export type Player = {
-  id: string;
-  name: string;
+  address: string;
+  port: number;
+  uuid: string;
+  name: string | undefined;
   room: string | undefined;
 };
 
 export const players: Player[] = [];
 
 export function getPlayerById(id: string): Player | undefined {
-  return players.find((player) => player.id === id);
+  return players.find((player) => player.uuid === id);
 }
 
 export function getPlayerByName(name: string): Player | undefined {
@@ -46,7 +48,7 @@ export function leaveRoom(playerId: string): Player | undefined {
   const room = getRoomByName(player.room || "");
   player.room = undefined;
   if (room) {
-    room.Players = room.Players.filter((p) => p.id !== player.id);
+    room.Players = room.Players.filter((p) => p.uuid !== player.uuid);
   }
   console.log(`[Player] Player ${playerName} left room ${room?.RoomName}`);
   return player;
