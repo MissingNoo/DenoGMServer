@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"UI",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"UI",
+  "parent":{
+    "name":"DenoTest1",
+    "path":"DenoTest1.yyp",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

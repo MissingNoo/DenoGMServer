@@ -1,0 +1,33 @@
+if (keyboard_check_pressed(vk_f12)) {
+	debug_rooms();
+}
+if (keyboard_check_pressed(vk_f1)) {
+	new packet("newRoom").write("roomName", lastroom).send();
+}
+if (keyboard_check_pressed(vk_f2)) {
+	new packet("joinRoom").write("roomName", lastroom).send();
+}
+if (keyboard_check_pressed(ord("R"))) {
+	global.con.reconnect()
+	alarm[0] = 120;
+	count = 0;
+}
+//if (keyboard_check_pressed(vk_f2)) {
+//    var json = {
+//		type : "leaveRoom"
+//	}
+//	new msg().write(json_stringify(json)).send();
+//}
+if (mx != mouse_x or my != mouse_y) {
+    mx = mouse_x;
+	my = mouse_y;
+	with (oOtherPlayer) {
+	    if (uuid == global.con.uuid) {
+		    player.x = mouse_x;
+		    player.y = mouse_y;
+		}
+	}
+	if (global.con.current_room != "") {
+	    new packet("movePlayer").write("x", mx).write("y", my).send();
+	}
+}

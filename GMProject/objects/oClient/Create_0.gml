@@ -1,0 +1,9 @@
+x = 10;
+y = 10;
+count = 0;
+lastroom = "test";
+global[$ "con"] ??= new connection("127.0.0.1", 36692, network_socket_udp);
+global.con.connect();
+players_in_room = [];
+mx = mouse_x;
+my = mouse_y;
