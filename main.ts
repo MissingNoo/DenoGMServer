@@ -5,8 +5,8 @@ import { createRoom, sendMessageToRoom } from "./Room.ts";
 import { randomUUID } from "node:crypto";
 import { sendMessage } from "./misc.ts";
 export const server = dgram.createSocket("udp4");
-
-server.bind(8080);
+const PORT = 36692;
+server.bind(PORT);
 server.on("message", (msg, rinfo) => {
   const data = JSON.parse(msg.toString());
   const player = players.find(
@@ -104,4 +104,4 @@ server.on("message", (msg, rinfo) => {
     }
   }
 });
-console.log("[Main] Server is listening on port 8080");
+console.log(`[Main] Server is listening on port ${PORT}`);
