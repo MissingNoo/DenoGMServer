@@ -1,0 +1,19 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run Game",
+      "type": "shell",
+      "command": "~/.local/share/GameMakerStudio2-Beta/Cache/runtimes/runtime-2024.1400.0.802/bin/igor/linux/x64/Igor -j8 -options=${cwd}/GMProject/builder/build.bff -- Linux Run",
+      "problemMatcher": []
+    },
+    {
+      "label": "Rerun Game",
+      "type": "shell",
+      "command": "~/GameMakerStudio2/runner -game /home/airgeadlamh/git/DenoGMServer/GMProject/builder/output/GameAssetsLinux/assets/game.unx",
+      "problemMatcher": []
+    }
+  ]
+}

@@ -22,7 +22,7 @@ function connection(_ip, _port, _type) constructor {
 	
 	static connect = function() {
 		if (connected = 0) {
-		    show_debug_log("Already connected!");
+		    show_debug_message("Already connected!");
 			exit;
 		}
 		socket = network_create_socket(type);
