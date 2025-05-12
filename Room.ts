@@ -8,7 +8,7 @@ export type Room = {
   password: string | undefined;
 };
 
-export const rooms: Room[] = [];
+export let rooms: Room[] = [];
 
 export function createRoom(roomName: string) {
   if (getRoomByName(roomName)) {
@@ -26,6 +26,15 @@ export function createRoom(roomName: string) {
   console.log(`[Room] Created room: ${roomName} with ID: ${roomId}`);
   console.log(`[Room] Current room count: ${rooms.length}`);
   return newRoom;
+}
+
+export function deleteRoom(roomName: string) {
+  const room = getRoomByName(roomName);
+  if (room) {
+    rooms = rooms.filter((r) => r !== room);
+    console.log(`[Room] Deleted room: ${room.RoomName}`);
+    console.log(`[Room] Current room count: ${rooms.length}`);
+  }
 }
 
 export function getRoomByName(roomName: string): Room | undefined {
