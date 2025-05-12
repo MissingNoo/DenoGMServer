@@ -7,9 +7,14 @@ export type Room = {
   RoomName: string;
   password: string | undefined;
 };
+
 export const rooms: Room[] = [];
 
-export function createRoom(roomName: string): Room {
+export function createRoom(roomName: string) {
+  if (getRoomByName(roomName)) {
+    console.log(`[Room] Room ${roomName} already exists`);
+    return undefined;
+  }
   const roomId = rooms.length + 1;
   const newRoom: Room = {
     RoomId: roomId,
@@ -25,12 +30,6 @@ export function createRoom(roomName: string): Room {
 
 export function getRoomByName(roomName: string): Room | undefined {
   return rooms.find((room) => room.RoomName === roomName);
-}
-
-export function playerInRoom(
-  player: Player,
-): boolean {
-  return player.room !== "";
 }
 
 export function sendMessageToRoom(

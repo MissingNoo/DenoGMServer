@@ -1,10 +1,6 @@
-import {
-  getRoomByName,
-  playerInRoom,
-  rooms,
-  sendMessageToRoom,
-} from "./Room.ts";
+import { getRoomByName, rooms, sendMessageToRoom } from "./Room.ts";
 import { sendMessage } from "./misc.ts";
+
 export type Player = {
   address: string;
   port: number;
@@ -17,7 +13,6 @@ export type Player = {
 
 export const players: Player[] = [];
 
-
 export function joinRoom(
   player: Player,
   roomName: string,
@@ -25,13 +20,19 @@ export function joinRoom(
   const room = rooms.find((room) => room.RoomName === roomName);
   if (!room) {
     console.log(`[Player] Room ${roomName} not found`);
+    sendMessage(
+      "joinRoomFailed",
+      { reason: "Room not found" },
+      player.address,
+      player.port,
+    );
     return;
   }
   if (playerInRoom(player)) {
     console.log(`[Player] Player ${player.uuid} already in a room`);
     sendMessage(
       "joinRoomFailed",
-      {},
+      { reason: "Already in a room" },
       player.address,
       player.port,
     );
@@ -69,4 +70,10 @@ export function leaveRoom(player: Player) {
     );
     console.log(`[Player] Player ${player.name} left room ${room.RoomName}`);
   }
+}
+
+function playerInRoom(
+  player: Player,
+): boolean {
+  return player.room !== "";
 }

@@ -1,11 +1,6 @@
 /// <reference lib="deno.ns" />
 import dgram from "node:dgram";
-import {
-  joinRoom,
-  leaveRoom,
-  Player,
-  players,
-} from "./Player.ts";
+import { joinRoom, leaveRoom, Player, players } from "./Player.ts";
 import { createRoom, sendMessageToRoom } from "./Room.ts";
 import { randomUUID } from "node:crypto";
 import { sendMessage } from "./misc.ts";
@@ -52,7 +47,15 @@ server.on("message", (msg, rinfo) => {
   if (player) {
     switch (data.type) {
       case "newRoom": {
-        createRoom(data.roomName);
+        const room = createRoom(data.roomName);
+        if (room) {
+          sendMessage(
+            "roomCreated",
+            { roomName: data.roomName },
+            rinfo.address,
+            rinfo.port,
+          );
+        }
         break;
       }
 
@@ -83,7 +86,7 @@ server.on("message", (msg, rinfo) => {
           player.room,
           "playerMoved",
           { uuid: player.uuid, x: player.x, y: player.y },
-          player
+          player,
         );
         break;
       }
