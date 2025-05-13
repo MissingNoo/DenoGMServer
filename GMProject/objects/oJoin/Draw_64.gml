@@ -13,20 +13,32 @@ ui.foreach(function(name, pos, data) {
 			code_input.draw();
 			break;
 		case "room_list":
-			draw_rectangle(_x, _y, _x + _w, _y + _h, true);
+			if (mouse_in_area_gui(area)) {
+				var newscroll = (-mouse_wheel_up() + mouse_wheel_down()) * 10;
+			    room_list_scroll += newscroll;
+				scrolltime = newscroll != 0 ? 5 : scrolltime;
+			}
+			scrolltime = clamp(scrolltime - 1, 0, 5);
+			if (scrolltime == 0 and room_list_scroll > 0) {
+			    room_list_scroll = lerp(room_list_scroll, 0, 0.1);
+			}
+			//draw_rectangle(_x, _y, _x + _w, _y + _h, true);
 			roomsurf = surface_recreate(roomsurf, gui_x_percent(100), gui_y_percent(100));
 			surface_set_target(roomsurf);
 				draw_clear_alpha(c_black, 0);
 				if (is_array(room_list)) {
 				    for (var yoff = 0, i = 0; i < array_length(room_list); ++i) {
+						var yy = _y + yoff + room_list_scroll;
 						var r = room_list[i];
 						r[$ "join_btn"] ??= new button("Join");
 						r.join_btn.set_function(method(r, function() {
 							new packet("joinRoom").write("roomName", name).send();
 						}));
-						r.join_btn.position(_x + _w - room_list_btn_x, _y + yoff + room_list_btn_y, _x + _w - room_list_btn_x + room_list_btn_w, _y + yoff + room_list_title_y + room_list_btn_h);
-					    draw_roundrect_ext(_x, _y + yoff, _x + _w, _y + yoff + room_list_h, roundness_x, roundness_y, true);
-						scribble(r.name).scale(room_list_title_scale).draw(_x + room_list_title_x, _y + yoff + room_list_title_y);
+						r.join_btn.position(_x + _w - room_list_btn_x, yy + room_list_btn_y, _x + _w - room_list_btn_x + room_list_btn_w, yy + room_list_title_y + room_list_btn_h);
+						draw_set_color(#FFEED5)
+					    draw_roundrect_ext(_x, yy, _x + _w, yy + room_list_h, roundness_x, roundness_y, false);
+						draw_set_color(c_white);
+						scribble($"[c_black]{r.name}").scale(room_list_title_scale).draw(_x + room_list_title_x, yy + room_list_title_y);
 						r.join_btn.draw();
 						yoff += room_list_offset;
 					}

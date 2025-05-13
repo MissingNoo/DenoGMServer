@@ -67,7 +67,6 @@ if (async_load[? "type"] == network_type_data) {
 			
 		case "roomList":
 			oJoin.room_list = data.roomList;
-			show_message_async(oJoin.room_list);
 			break;
 	    default:
 	        // code here

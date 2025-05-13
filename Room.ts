@@ -47,7 +47,7 @@ export function getRoomList() {
   rooms.forEach(element => {
     const r:roominfo = {
       name : element.RoomName,
-      players : players.length
+      players : element.Players.length
     }
     roomlist.push(r);
   });
