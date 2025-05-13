@@ -1,11 +1,13 @@
+import { randomUUID } from "node:crypto";
 import { sendMessage } from "./misc.ts";
-import { Player, players } from "./Player.ts";
+import { Player } from "./Player.ts";
 
 export type Room = {
   RoomId: number;
   Players: Player[];
   RoomName: string;
   password: string | undefined;
+  code : string
 };
 
 export let rooms: Room[] = [];
@@ -21,9 +23,10 @@ export function createRoom(roomName: string) {
     Players: [],
     RoomName: roomName,
     password: undefined,
+    code : randomUUID().split("-")[0]
   };
   rooms.push(newRoom);
-  console.log(`[Room] Created room: ${roomName} with ID: ${roomId}`);
+  console.log(`[Room] Created room: ${roomName} with ID: ${roomId} and code: ${newRoom.code}`);
   console.log(`[Room] Current room count: ${rooms.length}`);
   return newRoom;
 }
@@ -56,6 +59,10 @@ export function getRoomList() {
 
 export function getRoomByName(roomName: string): Room | undefined {
   return rooms.find((room) => room.RoomName === roomName);
+}
+
+export function getRoomByCode(roomCode: string): Room | undefined {
+  return rooms.find((room) => room.code === roomCode);
 }
 
 export function sendMessageToRoom(

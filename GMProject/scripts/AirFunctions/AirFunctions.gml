@@ -121,6 +121,7 @@ function textbox() constructor {
 	only_numbers = false;
 	owner = noone;
     text = "";
+	backtext = "";
     selected = false;
     area = [0, 0, 0, 0];
 	can_be_null = false;
@@ -209,8 +210,9 @@ function textbox() constructor {
         tick();
 		if (!is_undefined(backspr)) {
 		    draw_sprite_stretched(backspr, 0, area[0], area[1], area[2] - area[0], area[3] - area[1]);
-		}        
-        scribble($"[Fnt][{textcolor}] {text}").scale_to_box(area[2] - area[0] - string_width("X") - 2, area[3] - area[1] - 3, true).draw(area[0], area[1]);
+		}
+		var _text = text == "" ? backtext : text;
+        scribble($"[Fnt][{textcolor}] {_text}").scale_to_box(area[2] - area[0] - string_width("X") - 2, area[3] - area[1] - 3, true).draw(area[0], area[1]);
     }
 }
 global.reset_button = false;
@@ -251,6 +253,13 @@ function button(_text) constructor {
     
     static position = function(x, y, xx, yy) {
         area = [x, y, xx, yy];
+        selected_area = area;
+        original_area = area;
+        return self;
+    }
+    
+	static set_position_area = function(_area) {
+        area = _area;
         selected_area = area;
         original_area = area;
         return self;

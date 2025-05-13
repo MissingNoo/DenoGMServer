@@ -1,7 +1,7 @@
 /// <reference lib="deno.ns" />
 import dgram from "node:dgram";
 import { joinRoom, leaveRoom, Player, players } from "./Player.ts";
-import { createRoom, getRoomList, sendMessageToRoom } from "./Room.ts";
+import { createRoom, getRoomByCode, getRoomList, sendMessageToRoom } from "./Room.ts";
 import { randomUUID } from "node:crypto";
 import { sendMessage } from "./misc.ts";
 export const server = dgram.createSocket("udp4");
@@ -61,6 +61,15 @@ server.on("message", (msg, rinfo) => {
 
       case "joinRoom": {
         joinRoom(player, data.roomName);
+        break;
+      }
+
+      case "joinCode": {
+        const rname = getRoomByCode(data.roomCode);
+        console.log(data.roomCode);
+        if (rname) {
+          joinRoom(player, rname.RoomName);
+        }
         break;
       }
 
