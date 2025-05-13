@@ -124,6 +124,8 @@ function textbox() constructor {
     selected = false;
     area = [0, 0, 0, 0];
 	can_be_null = false;
+	backspr = sInput;
+	textcolor = "c_black";
     func = function(){};
     
     static position = function(x, y, xx, yy) {
@@ -205,8 +207,10 @@ function textbox() constructor {
     static draw = function() {
 		if (area[0] == area[2]) { exit; }
         tick();
-        draw_sprite_stretched(sInput, 0, area[0], area[1], area[2] - area[0], area[3] - area[1]);
-        scribble($"[Fnt][c_black] {text}").scale_to_box(area[2] - area[0] - string_width("X") - 2, area[3] - area[1] - 3, true).draw(area[0], area[1]);
+		if (!is_undefined(backspr)) {
+		    draw_sprite_stretched(backspr, 0, area[0], area[1], area[2] - area[0], area[3] - area[1]);
+		}        
+        scribble($"[Fnt][{textcolor}] {text}").scale_to_box(area[2] - area[0] - string_width("X") - 2, area[3] - area[1] - 3, true).draw(area[0], area[1]);
     }
 }
 global.reset_button = false;
@@ -314,8 +318,8 @@ function button(_text) constructor {
         draw_sprite_stretched(sprite, held, area[0], area[1], area[2] - area[0], area[3] - area[1]);
         var alpha = enabled ? 1 : 0.5;
         if (use_text) {
-        	//scribble($"[alpha,{alpha}][{color}][fa_center]{text}").scale_to_box(area[2] - area[0] - string_width("X") - 2, area[3] - area[1], true).draw(area[0] + ((area[2] - area[0]) / 2), _y);
-        	scribble($"[alpha,{alpha}][{color}][fa_middle][fa_center]{text}").scale(2).draw(area[0] + ((area[2] - area[0]) / 2), area[1] + ((area[3] - area[1]) / 2));
+        	scribble($"[alpha,{alpha}][{color}][fa_center]{text}").scale_to_box(area[2] - area[0] - string_width("X") - 2, area[3] - area[1], true).draw(area[0] + ((area[2] - area[0]) / 2), _y);
+        	//scribble($"[alpha,{alpha}][{color}][fa_middle][fa_center]{text}").scale(2).draw(area[0] + ((area[2] - area[0]) / 2), area[1] + ((area[3] - area[1]) / 2));
         }
         return self;
     }
@@ -580,4 +584,13 @@ function between(val, _min, _max) {
 
 function seconds_to_frames(seconds) {
 	return seconds * game_get_speed(gamespeed_fps);
+}
+
+function create_view_from_instance(inst) {
+	for (var names = struct_get_names(inst), i = 0; i < array_length(names); ++i) {
+    if (is_real(inst[$ names[i]])) {
+		inst[$ $"ref_{names[i]}"] = ref_create(inst, names[i]);
+	    dbg_slider(inst[$ $"ref_{names[i]}"], -100, 100, names[i]);
+	}
+}
 }

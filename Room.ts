@@ -1,5 +1,5 @@
 import { sendMessage } from "./misc.ts";
-import { Player } from "./Player.ts";
+import { Player, players } from "./Player.ts";
 
 export type Room = {
   RoomId: number;
@@ -35,6 +35,23 @@ export function deleteRoom(roomName: string) {
     console.log(`[Room] Deleted room: ${room.RoomName}`);
     console.log(`[Room] Current room count: ${rooms.length}`);
   }
+}
+
+type roominfo = {
+  name : string,
+  players : number,
+}
+
+export function getRoomList() {
+  const roomlist:roominfo[] = [];
+  rooms.forEach(element => {
+    const r:roominfo = {
+      name : element.RoomName,
+      players : players.length
+    }
+    roomlist.push(r);
+  });
+  return roomlist;
 }
 
 export function getRoomByName(roomName: string): Room | undefined {

@@ -1,2 +1,3 @@
-/// @description Insert description here
-// You can write your code in this editor
+if (dbg_view_exists(dbg)) {
+	dbg_view_delete(dbg);
+}

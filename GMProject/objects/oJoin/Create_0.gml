@@ -1,2 +1,25 @@
-/// @description Insert description here
-// You can write your code in this editor
+ui = new window(global.game_uis.rooms);
+ui.fit_to_gui();
+roundness_x = 10;
+roundness_y = 15;
+room_list_offset = 53;
+room_list_h = 50;
+room_list_title_x = 15;
+room_list_title_y = 5;
+room_list_title_scale = 1;
+room_list_btn_x = 120;
+room_list_btn_y = 10;
+room_list_btn_w = 120;
+room_list_btn_h = 32;
+code_input = new textbox();
+code_input.only_numbers = true;
+code_input.textcolor = "c_white";
+code_input.backspr = undefined;
+//room_list_ = ;
+//room_list_ = ;
+roomsurf = undefined;
+dbg = dbg_view("Join", false, 10, 10);
+create_view_from_instance(self);
+room_list = undefined;
+
+new packet("getRoomList").send();

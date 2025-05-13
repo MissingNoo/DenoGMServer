@@ -1,7 +1,7 @@
 /// <reference lib="deno.ns" />
 import dgram from "node:dgram";
 import { joinRoom, leaveRoom, Player, players } from "./Player.ts";
-import { createRoom, sendMessageToRoom } from "./Room.ts";
+import { createRoom, getRoomList, sendMessageToRoom } from "./Room.ts";
 import { randomUUID } from "node:crypto";
 import { sendMessage } from "./misc.ts";
 export const server = dgram.createSocket("udp4");
@@ -98,6 +98,17 @@ server.on("message", (msg, rinfo) => {
         console.log(`[Main] Player ${player.uuid} disconnected`);
         break;
       }
+
+      case "getRoomList":
+        sendMessage(
+          "roomList", 
+          {
+            roomList : getRoomList(),
+          },
+          rinfo.address,
+          rinfo.port
+        );
+        break;
 
       default:
         break;

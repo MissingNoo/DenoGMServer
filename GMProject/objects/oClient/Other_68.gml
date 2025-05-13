@@ -17,6 +17,7 @@ if (async_load[? "type"] == network_type_data) {
 			
 		case "joinedRoom":
 			global.con.current_room = data.roomName;
+			instance_destroy(oJoin);
 			break;
 			
 		case "playersInRoom":
@@ -62,6 +63,11 @@ if (async_load[? "type"] == network_type_data) {
 			
 		case "roomCreated":
 			new packet("joinRoom").write("roomName", data.roomName).send();
+			break;
+			
+		case "roomList":
+			oJoin.room_list = data.roomList;
+			show_message_async(oJoin.room_list);
 			break;
 	    default:
 	        // code here
