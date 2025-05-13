@@ -69,7 +69,6 @@ export function leaveRoom(player: Player) {
       true,
     );
     console.log(`[Player] Player ${player.name} left room ${room.RoomName}`);
-    console.log(room.Players.length);
     if (room.Players.length === 0) {
       deleteRoom(room.RoomName);
     }

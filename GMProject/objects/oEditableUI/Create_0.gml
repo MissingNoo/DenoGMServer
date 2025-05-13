@@ -7,7 +7,7 @@ creating = false;
 
 str = {
   "width":1280.0,
-  "name":"base",
+  "name":"main_panel",
   "height":720.0,
   "top":50.0,
   "data":{
