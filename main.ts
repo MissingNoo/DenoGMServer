@@ -51,7 +51,7 @@ server.on("message", (msg, rinfo) => {
         if (room) {
           sendMessage(
             "roomCreated",
-            { roomName: data.roomName },
+            { roomName: data.roomName, roomCode : room.code },
             rinfo.address,
             rinfo.port,
           );

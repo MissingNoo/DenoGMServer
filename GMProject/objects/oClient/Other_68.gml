@@ -22,8 +22,8 @@ if (async_load[? "type"] == network_type_data) {
 			break;
 			
 		case "playersInRoom":
-			players_in_room = data.players;
-			array_foreach(players_in_room, function(e, i) {
+			AirNet.players_in_room = data.players;
+			array_foreach(AirNet.players_in_room, function(e, i) {
 				var exists = false;
 				with (oOtherPlayer) {
 					exists = self.player == e;
@@ -38,22 +38,22 @@ if (async_load[? "type"] == network_type_data) {
 		case "playerMoved":
 			var ouuid = data.uuid;
 			global.search = ouuid;
-			player = array_find_index(players_in_room, function(e, i) {
+			player = array_find_index(AirNet.players_in_room, function(e, i) {
 				return e.uuid == global.search;
 			});
 			if (player != -1) {
-			    players_in_room[player].x = data.x;
-			    players_in_room[player].y = data.y;
+			    AirNet.players_in_room[player].x = data.x;
+			    AirNet.players_in_room[player].y = data.y;
 			}
 			break;
 			
 		case "playerLeft":
 			ouuid = data.uuid;
-			player = array_find_index(players_in_room, function(e, i) {
+			player = array_find_index(AirNet.players_in_room, function(e, i) {
 				return e.uuid == global.search;
 			});
 			if (player != -1) {
-				array_delete(players_in_room, player, 1);
+				array_delete(AirNet.players_in_room, player, 1);
 			}
 			with (oOtherPlayer) {
 			    if (uuid == ouuid) {
@@ -63,6 +63,8 @@ if (async_load[? "type"] == network_type_data) {
 			break;
 			
 		case "roomCreated":
+            room_code = data.roomCode;
+            AirNet.host = true;
 			new packet("joinRoom").write("roomName", data.roomName).send();
 			break;
 			
