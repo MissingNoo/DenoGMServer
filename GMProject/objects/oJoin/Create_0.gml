@@ -11,6 +11,8 @@ room_list_btn_x = 120;
 room_list_btn_y = 10;
 room_list_btn_w = 110;
 room_list_btn_h = 32;
+room_list_online_x = 5;
+room_list_online_y = 25;
 room_list_scroll = 0;
 scrolltime = 0;
 code_input = new textbox();
@@ -25,8 +27,6 @@ code_button.set_function(method(self, function() {
 }));
 bg = #FFEED5;
 fg = #D5AA73;
-//room_list_ = ;
-//room_list_ = ;
 roomsurf = undefined;
 dbg = dbg_view("Join", false, 10, 10);
 create_view_from_instance(self);

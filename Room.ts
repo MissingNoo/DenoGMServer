@@ -7,12 +7,14 @@ export type Room = {
   Players: Player[];
   RoomName: string;
   password: string | undefined;
+  maxPlayers : number;
+  type : string;
   code : string
 };
 
 export let rooms: Room[] = [];
 
-export function createRoom(roomName: string) {
+export function createRoom(roomName: string, password: string, maxPlayers:number, type : string) {
   if (getRoomByName(roomName)) {
     console.log(`[Room] Room ${roomName} already exists`);
     return undefined;
@@ -22,8 +24,10 @@ export function createRoom(roomName: string) {
     RoomId: roomId,
     Players: [],
     RoomName: roomName,
-    password: undefined,
-    code : randomUUID().split("-")[0]
+    password: password,
+    maxPlayers : maxPlayers,
+    code : randomUUID().split("-")[0],
+    type : type
   };
   rooms.push(newRoom);
   console.log(`[Room] Created room: ${roomName} with ID: ${roomId} and code: ${newRoom.code}`);
@@ -43,6 +47,8 @@ export function deleteRoom(roomName: string) {
 type roominfo = {
   name : string,
   players : number,
+  maxPlayers : number,
+  type : string
 }
 
 export function getRoomList() {
@@ -50,7 +56,9 @@ export function getRoomList() {
   rooms.forEach(element => {
     const r:roominfo = {
       name : element.RoomName,
-      players : element.Players.length
+      players : element.Players.length,
+      maxPlayers : element.maxPlayers,
+      type : element.type
     }
     roomlist.push(r);
   });

@@ -50,12 +50,10 @@ function connection(_ip, _port, _type) constructor {
 	}
 }
 
-function packet(_type) constructor {
+function packet(type) constructor {
 	buffer = buffer_create(0, buffer_grow, 1);
 	buffer_seek(buffer, buffer_seek_start, 0);
-	data = {
-		type : _type
-	}
+	data = { type }
 	
 	static write = function(k, v) {
 		data[$ k] = v;

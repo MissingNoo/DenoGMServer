@@ -47,7 +47,7 @@ server.on("message", (msg, rinfo) => {
   if (player) {
     switch (data.type) {
       case "newRoom": {
-        const room = createRoom(data.roomName);
+        const room = createRoom(data.roomName, data.password, data.maxPlayers, data.roomType);
         if (room) {
           sendMessage(
             "roomCreated",

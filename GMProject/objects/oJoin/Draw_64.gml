@@ -65,10 +65,11 @@ ui.foreach(function(name, pos, data) {
 							new packet("joinRoom").write("roomName", name).send();
 						}));
 						r.join_btn.position(_x + _w - room_list_btn_x, yy + room_list_btn_y, _x + _w - room_list_btn_x + room_list_btn_w, yy + room_list_title_y + room_list_btn_h);
-						draw_set_color(bg)
+						draw_set_color(bg);
 					    draw_roundrect_ext(_x, yy, _x + _w, yy + room_list_h, roundness_x, roundness_y, false);
 						draw_set_color(c_white);
 						scribble($"[c_black]{r.name}").scale(room_list_title_scale).draw(_x + room_list_title_x, yy + room_list_title_y);
+						scribble($"[c_black][fa_middle][fa_right]{r.players}/{r.maxPlayers}").scale(room_list_title_scale).draw(_x + _w - room_list_btn_x - room_list_online_x, yy + room_list_online_y);
 						r.join_btn.draw();
 						yoff += room_list_offset;
 					}
