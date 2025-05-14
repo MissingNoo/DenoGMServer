@@ -1,3 +1,8 @@
+#macro AirNet global.__airnet
+AirNet = {
+    ip : "127.0.0.1",
+    port : 36692
+}
 function connection(_ip, _port, _type) constructor {
 	ip = _ip;
 	port = _port;
@@ -61,9 +66,9 @@ function packet(type) constructor {
 	}
 	
 	static send = function() {
-		if (global.con.connected != 0) { exit; }
+		if (AirNet.connection.connected != 0) { exit; }
 		buffer_write(buffer, buffer_string, json_stringify(data));
-		network_send_raw(global.con.socket, buffer, buffer_tell(buffer) - 1);
+		network_send_raw(AirNet.connection.socket, buffer, buffer_tell(buffer) - 1);
 		buffer_delete(buffer);
 	}
 }

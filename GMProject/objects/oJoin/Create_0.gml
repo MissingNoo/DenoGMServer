@@ -32,4 +32,12 @@ dbg = dbg_view("Join", false, 10, 10);
 create_view_from_instance(self);
 room_list = undefined;
 
+quit_button = new button("X");
+quit_button.set_function(method(self, function() {
+    instance_activate_object(oMainMenu);
+    instance_destroy(self);
+}));
+quit_button.set_sprite(sBlank);
+quit_button.set_back_sprite(sBlank);
+
 new packet("getRoomList").send();

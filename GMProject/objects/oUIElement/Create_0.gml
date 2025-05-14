@@ -95,5 +95,6 @@ if (element != undefined) {
 	}
 	//if (type == "listbox") {
 	//    show_message(element);
-	//}	
+	//}
+    array_push(AirLib.ui_editor_order, element);
 }

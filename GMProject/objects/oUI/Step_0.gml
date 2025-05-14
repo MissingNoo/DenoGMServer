@@ -1,4 +1,5 @@
 if (keyboard_check_released(vk_f4)) {
+    vis = !vis;
     ui.node_visible("panel_side_ignore");
 	ui.node_visible("panel_side");
 	ui.node_visible("panel_list_base");

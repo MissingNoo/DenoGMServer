@@ -36,12 +36,12 @@ if (text != "" and element == undefined)
 }
 
 if (element != undefined) {
-	if (type == "listbox" and element.open) {
-	    depth = -9000;
-	} else {
-		depth = original_depth;
-	}
-    element.draw();
+	//if (type == "listbox" and element.open) {
+	    //depth = -9000;
+	//} else {
+		//depth = original_depth;
+	//}
+    //element.draw();
 }
 var editor = flexpanel_node_get_data(flexpanel_node_get_child(oUI.ui.root, "panel_side_ignore"));
 

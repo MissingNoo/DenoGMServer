@@ -235,6 +235,10 @@ function button(_text) constructor {
 	static set_sprite = function(spr) {
 		sprite = spr;
 	}
+    
+    static set_back_sprite = function(spr) {
+		sprite_back = spr;
+	}
 	
     static set_gui = function(boolean) {
         gui = boolean;
@@ -375,9 +379,17 @@ function listbox() constructor {
     static on_click = function() {
         if (device_mouse_check_button_released(0, mb_left)) {
             if (mouse_in_area_gui(area) and gui_can_interact()) {
-                global.listboxopen = true;
-				global.elementselected = self;
-                open = true;
+                if (!open) {
+                	global.listboxopen = true;
+				    global.elementselected = self;
+                    open = true;
+                } else {
+                    AirLib.listframe = AirLib.frame + 10;
+                    global.listboxopen = false;
+				    global.elementselected = noone;
+                    open = false;
+                }
+                
             //} else if (!mouse_in_area_gui(openarea)) {
             } else {
                 global.listboxopen = false;
@@ -419,10 +431,11 @@ function listbox() constructor {
                     text = list[i];
                     func_on_select(self);
                 }
-                scribble($"[Fnt][c_black] {list[i]}").scale_to_box(area[2] - area[0] - string_width("X") - 2, area[3] - area[1] - 3, true).draw(openarea[0], _y);
-                offset += 40;
+                var _str = $"[Fnt][c_black] {list[i]}";
+                scribble(_str).scale_to_box(area[2] - area[0] - string_width("X") - 2, area[3] - area[1] - 3, true).draw(openarea[0], _y);
+                offset += string_height(_str);
                 if (openarea[3] < _y) {
-                    openarea[3] = _y + offset + 10;
+                    openarea[3] = _y;
                 }
             }
             openarea[3] = _y + 50;

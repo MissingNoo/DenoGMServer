@@ -1,6 +1,3 @@
-draw_set_alpha(0.5);
-draw_sprite_stretched(sCreate, 0, 0, 0, display_get_gui_width(), display_get_gui_height());
-draw_set_alpha(1);
 ui.foreach(function(name, pos, data) {
     var spr = data[$ "image"] != undefined ? asset_get_index(data.image) : undefined;
     spr = (spr != undefined and spr != -1) ? spr : sBlank;
@@ -30,7 +27,11 @@ ui.foreach(function(name, pos, data) {
         case "create_panel":
 			draw_set_color(global.game_uis.bg);
 		    draw_roundrect_ext(_x, _y, _x + _w, _y + _h, global.game_uis.roundx, global.game_uis.roundy, false);
+            draw_set_color(global.game_uis.button_bg);
+		    draw_roundrect_ext(_x + _w - 20, _y - 20, _x + _w + 20, _y + 20, global.game_uis.roundx, global.game_uis.roundy, false);
 			draw_set_color(c_white);
+            quit_button.position(_x + _w - 20, _y - 20, _x + _w + 20, _y + 20);
+            quit_button.draw();
 			break;
         case "name_input":
             draw_set_color(global.game_uis.input_bg);
@@ -40,18 +41,21 @@ ui.foreach(function(name, pos, data) {
             name_input.draw();
             break;
         case "type_selection":
-            draw_set_color(global.game_uis.input_bg);
+            draw_set_color(global.game_uis.list_bg);
 		    draw_roundrect_ext(_x, _y, _x + _w, _y + _h, global.game_uis.roundx, global.game_uis.roundy, false);
 			draw_set_color(c_white);
             type_dropdown.position(_x, _y, _x + _w, _y + _h);
             break;
         case "maxp_selection":
-            draw_set_color(global.game_uis.input_bg);
+            draw_set_color(global.game_uis.list_bg);
 		    draw_roundrect_ext(_x, _y, _x + _w, _y + _h, global.game_uis.roundx, global.game_uis.roundy, false);
 			draw_set_color(c_white);
             maxp.position(_x, _y, _x + _w, _y + _h);
             break;
         case "create_button":
+            draw_set_color(global.game_uis.button_bg);
+		    draw_roundrect_ext(_x, _y, _x + _w, _y + _h, global.game_uis.roundx, global.game_uis.roundy, false);
+			draw_set_color(c_white);
             create_button.position(_x, _y, _x + _w, _y + _h);
             create_button.draw();
             break;

@@ -8,7 +8,7 @@ if (keyboard_check_pressed(vk_f2)) {
 	new packet("joinRoom").write("roomName", lastroom).send();
 }
 if (keyboard_check_pressed(ord("R"))) {
-	global.con.reconnect()
+	AirNet.connection.reconnect()
 	alarm[0] = 120;
 	count = 0;
 }
@@ -22,12 +22,12 @@ if (mx != mouse_x or my != mouse_y) {
     mx = mouse_x;
 	my = mouse_y;
 	with (oOtherPlayer) {
-	    if (uuid == global.con.uuid) {
+	    if (uuid == AirNet.connection.uuid) {
 		    player.x = mouse_x;
 		    player.y = mouse_y;
 		}
 	}
-	if (global.con.current_room != "") {
+	if (AirNet.connection.current_room != "") {
 	    new packet("movePlayer").write("x", mx).write("y", my).send();
 	}
 }

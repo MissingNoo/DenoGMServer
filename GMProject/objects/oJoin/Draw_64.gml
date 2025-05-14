@@ -10,7 +10,11 @@ ui.foreach(function(name, pos, data) {
 		case "join_panel":
 			draw_set_color(bg);
 		    draw_roundrect_ext(_x, _y, _x + _w, _y + _h, roundness_x, roundness_y, false);
+            draw_set_color(global.game_uis.button_bg);
+		    draw_roundrect_ext(_x + _w - 20, _y - 20, _x + _w + 20, _y + 20, global.game_uis.roundx, global.game_uis.roundy, false);
 			draw_set_color(c_white);
+            quit_button.position(_x + _w - 20, _y - 20, _x + _w + 20, _y + 20);
+            quit_button.draw();
 			break;
 		case "code_panel":
 			draw_set_color(fg);

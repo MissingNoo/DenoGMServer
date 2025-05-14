@@ -4,6 +4,8 @@ global.game_uis = {
     bg : #FFEED5,
     fg : #D5AA73,
     input_bg : #BC9460,
+    button_bg : #5A755A,
+    list_bg : #5A755A,
     roundx : 10,
     roundy : 15
 };

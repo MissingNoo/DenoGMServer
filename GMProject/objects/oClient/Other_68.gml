@@ -6,17 +6,17 @@ if (async_load[? "type"] == network_type_data) {
 	var oouid, player;
 	switch (return_type) {
 	    case "uuid":
-	        global.con.set_uuid(data.uuid);
+	        AirNet.connection.set_uuid(data.uuid);
 	        break;
 			
 		case "pong":
 			var time = get_timer();
-			global.con.ping = round(((time - global.con.pingtime) / 1000000) * 100);
-			global.con.lastpong = get_timer();
+			AirNet.connection.ping = round(((time - AirNet.connection.pingtime) / 1000000) * 100);
+			AirNet.connection.lastpong = get_timer();
 			break;
 			
 		case "joinedRoom":
-			global.con.current_room = data.roomName;
+			AirNet.connection.current_room = data.roomName;
 			instance_destroy(oJoin);
 			instance_destroy(oCreate);
 			break;
@@ -29,7 +29,7 @@ if (async_load[? "type"] == network_type_data) {
 					exists = self.player == e;
 				}
 				if (!exists) {
-				//if (!exists and e.uuid != global.con.uuid) {
+				//if (!exists and e.uuid != AirNet.connection.uuid) {
 				    instance_create_depth(e.x, e.y, 0, oOtherPlayer, {player : e});
 				}
 			});

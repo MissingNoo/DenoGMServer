@@ -1,4 +1,6 @@
 //feather ignore all
+vis = true;
+AirLib.ui_editor_order = [];
 display_set_gui_size(1920, 1080);
 global.filename = "/home/airgeadlamh/.config/DenoTest1/test.ui";
 depth = -2000;
