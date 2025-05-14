@@ -342,12 +342,13 @@ function listbox() constructor {
     area = undefined;
     openarea = undefined;
     text = "";
+    backspr = sInput;
     
     func_on_select = function(inst){};
     
     static position = function(x, y, xx, yy) {
         area = [x, y, xx, yy];
-        openarea = variable_clone(area);
+        openarea ??= variable_clone(area);
         return self;
     }
     
@@ -380,6 +381,10 @@ function listbox() constructor {
             //} else if (!mouse_in_area_gui(openarea)) {
             } else {
                 global.listboxopen = false;
+                if (global.elementselected == self) {
+                    global.elementselected = noone;
+                	AirLib.listframe = AirLib.frame + 10;
+                }
                 open = false;
             }
         }
@@ -394,9 +399,13 @@ function listbox() constructor {
         //draw_rectangle_area(area, false);
         //draw_set_color(c_white);
         //draw_rectangle_area(area, true);
-        draw_sprite_stretched(sInput, 0, area[0], area[1], area[2] - area[0], area[3] - area[1]);
+        if (!is_undefined(backspr)) {
+        	draw_sprite_stretched(backspr, 0, area[0], area[1], area[2] - area[0], area[3] - area[1]);
+        }
         scribble($"[Fnt][c_black] {text}").scale_to_box(area[2] - area[0] - string_width("X") - 2, area[3] - area[1] - 3, true).draw(area[0], area[1]);
         if (open) {
+            self.ldepth = gpu_get_depth();
+            gpu_set_depth(self.ldepth - 100);
             draw_sprite_stretched(sInput, 0, openarea[0], openarea[1], openarea[2] - openarea[0], openarea[3] - openarea[1]);
             //draw_set_color(c_black);
             //draw_rectangle_area(openarea, false);
@@ -417,13 +426,14 @@ function listbox() constructor {
                 }
             }
             openarea[3] = _y + 50;
+            gpu_set_depth(self.ldepth);
         }
         return self;
     }
 }
 
 function gui_can_interact() {
-    return !global.listboxopen;
+    return !global.listboxopen and AirLib.listframe < AirLib.frame;
 }
 
 global.currenttextbox = undefined;

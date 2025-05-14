@@ -18,6 +18,7 @@ if (async_load[? "type"] == network_type_data) {
 		case "joinedRoom":
 			global.con.current_room = data.roomName;
 			instance_destroy(oJoin);
+			instance_destroy(oCreate);
 			break;
 			
 		case "playersInRoom":

@@ -2,12 +2,7 @@ if (keyboard_check_pressed(ord("Z"))) {
 	debug_rooms();
 }
 if (keyboard_check_pressed(vk_f1)) {
-	new packet("newRoom")
-	.write("roomName", lastroom)
-	.write("password", "")
-	.write("maxPlayers", 12)
-	.write("roomType", "Public")
-	.send();
+	
 }
 if (keyboard_check_pressed(vk_f2)) {
 	new packet("joinRoom").write("roomName", lastroom).send();

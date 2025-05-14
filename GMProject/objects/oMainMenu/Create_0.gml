@@ -15,6 +15,11 @@ for (var i = 0; i < array_length(options); i += 1) {
     }
 }
 
+option_data.create.btn.set_function(function () {
+    instance_create_depth(x, y, depth, oCreate);
+	instance_deactivate_object(self);
+});
+
 option_data.join.btn.set_function(function() {
 	instance_create_depth(x, y, depth, oJoin);
 	instance_deactivate_object(self);

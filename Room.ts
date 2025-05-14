@@ -30,7 +30,7 @@ export function createRoom(roomName: string, password: string, maxPlayers:number
     type : type
   };
   rooms.push(newRoom);
-  console.log(`[Room] Created room: ${roomName} with ID: ${roomId} and code: ${newRoom.code}`);
+  console.log(`[Room] Created room: ${roomName} with ID: ${roomId} and code: ${newRoom.code} with max ${maxPlayers} players`);
   console.log(`[Room] Current room count: ${rooms.length}`);
   return newRoom;
 }
