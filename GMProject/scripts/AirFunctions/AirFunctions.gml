@@ -118,6 +118,7 @@ global.elementselected = noone;
 global.listboxtimer = 60;
 
 function textbox() constructor {
+    style = AirLibDefaultStyle;
 	only_numbers = false;
 	owner = noone;
     text = "";
@@ -128,6 +129,38 @@ function textbox() constructor {
 	backspr = sInput;
 	textcolor = "c_black";
     func = function(){};
+    
+    static style_default = function() {
+        if (!is_undefined(backspr)) {
+		    draw_sprite_stretched(backspr, 0, area[0], area[1], area[2] - area[0], area[3] - area[1]);
+		}
+    }
+    
+    static style_flat = function() {
+        draw_set_color(global.game_uis.input_bg);
+        draw_rectangle(area[0], area[1], area[2], area[3], false);
+        draw_set_color(c_white);
+    }
+    
+    static style_rounded = function() {
+        draw_set_color(global.game_uis.input_bg);
+		draw_roundrect_ext(area[0], area[1], area[2], area[3], global.game_uis.roundx, global.game_uis.roundy, false);
+		draw_set_color(c_white);
+    }
+    
+    static style_draw = function() {
+        switch (style) {
+        	case AirLibBtnStyle.Default:
+                style_default();
+                break;
+        	case AirLibBtnStyle.Flat:
+                style_flat();
+                break;
+        	case AirLibBtnStyle.Rounded:
+                style_rounded();
+                break;
+        }
+    }
     
     static position = function(x, y, xx, yy) {
         area = [x, y, xx, yy];
@@ -206,17 +239,21 @@ function textbox() constructor {
     }
     
     static draw = function() {
-		if (area[0] == area[2]) { exit; }
-        tick();
-		if (!is_undefined(backspr)) {
-		    draw_sprite_stretched(backspr, 0, area[0], area[1], area[2] - area[0], area[3] - area[1]);
-		}
+		if (area[0] == area[2]) { exit; } 
+        style_draw();
+        tick(); 
 		var _text = text == "" ? backtext : text;
         scribble($"[Fnt][{textcolor}] {_text}").scale_to_box(area[2] - area[0] - string_width("X") - 2, area[3] - area[1] - 3, true).draw(area[0], area[1]);
     }
 }
 global.reset_button = false;
+enum AirLibBtnStyle {
+    Default,
+    Flat,
+    Rounded
+}
 function button(_text) constructor {
+    style = AirLibDefaultStyle;
     use_text = true;
 	owner = noone;
     text = _text;
@@ -229,8 +266,40 @@ function button(_text) constructor {
     gui = true;
 	sprite_back = sButton;
 	sprite = sButton;
+    held = false;
     func = function(){};
 	on_area_func = function(){};
+    static style_default = function() {
+        if (sprite_back != undefined) {
+		    draw_sprite_stretched(sprite_back, held, area[0], area[1], area[2] - area[0], area[3] - area[1]);
+		}
+    }
+    
+    static style_flat = function() {
+        draw_set_color(global.game_uis.button_bg);
+        draw_rectangle(area[0], area[1], area[2], area[3], false);
+        draw_set_color(c_white);
+    }
+    
+    static style_rounded = function() {
+        draw_set_color(global.game_uis.button_bg);
+		draw_roundrect_ext(area[0], area[1], area[2], area[3], global.game_uis.roundx, global.game_uis.roundy, false);
+		draw_set_color(c_white);
+    }
+    
+    static style_draw = function() {
+        switch (style) {
+        	case AirLibBtnStyle.Default:
+                style_default();
+                break;
+        	case AirLibBtnStyle.Flat:
+                style_flat();
+                break;
+        	case AirLibBtnStyle.Rounded:
+                style_rounded();
+                break;
+        }
+    }
     
 	static set_sprite = function(spr) {
 		sprite = spr;
@@ -295,7 +364,7 @@ function button(_text) constructor {
         //draw_set_color(c_white);
         //draw_rectangle_area(area, true);
         var _y = area[1];
-        var held = false; 
+        held = false;
         if (enabled and ((!gui and mouse_in_area(area)) or (gui and mouse_in_area_gui(area)))) {
             global.reset_button = true;
             on_area = true;
@@ -321,14 +390,12 @@ function button(_text) constructor {
             held = true;
             _y += 3;
         }
-		if (sprite_back != undefined) {
-		    draw_sprite_stretched(sprite_back, held, area[0], area[1], area[2] - area[0], area[3] - area[1]);
-		}
+		style_draw();
         var color = "c_white";
         if (held) {
         	color = "c_black";
         }
-        draw_sprite_stretched(sprite, held, area[0], area[1], area[2] - area[0], area[3] - area[1]);
+        //draw_sprite_stretched(sprite, held, area[0], area[1], area[2] - area[0], area[3] - area[1]);
         var alpha = enabled ? 1 : 0.5;
         if (use_text) {
         	scribble($"[alpha,{alpha}][{color}][fa_center]{text}").scale_to_box(area[2] - area[0] - string_width("X") - 2, area[3] - area[1], true).draw(area[0] + ((area[2] - area[0]) / 2), _y);
@@ -339,6 +406,7 @@ function button(_text) constructor {
 }
 
 function listbox() constructor {
+    style = AirLibDefaultStyle;
 	owner = noone;
     selected = "";
     list = [];
@@ -347,6 +415,38 @@ function listbox() constructor {
     openarea = undefined;
     text = "";
     backspr = sInput;
+    
+    static style_default = function() {
+        if (!is_undefined(backspr)) {
+        	draw_sprite_stretched(backspr, 0, area[0], area[1], area[2] - area[0], area[3] - area[1]);
+        }
+    }
+    
+    static style_flat = function() {
+        draw_set_color(global.game_uis.list_bg);
+        draw_rectangle(area[0], area[1], area[2], area[3], false);
+        draw_set_color(c_white);
+    }
+    
+    static style_rounded = function() {
+        draw_set_color(global.game_uis.list_bg);
+		draw_roundrect_ext(area[0], area[1], area[2], area[3], global.game_uis.roundx, global.game_uis.roundy, false);
+		draw_set_color(c_white);
+    }
+    
+    static style_draw = function() {
+        switch (style) {
+        	case AirLibBtnStyle.Default:
+                style_default();
+                break;
+        	case AirLibBtnStyle.Flat:
+                style_flat();
+                break;
+        	case AirLibBtnStyle.Rounded:
+                style_rounded();
+                break;
+        }
+    }
     
     func_on_select = function(inst){};
     
@@ -411,9 +511,7 @@ function listbox() constructor {
         //draw_rectangle_area(area, false);
         //draw_set_color(c_white);
         //draw_rectangle_area(area, true);
-        if (!is_undefined(backspr)) {
-        	draw_sprite_stretched(backspr, 0, area[0], area[1], area[2] - area[0], area[3] - area[1]);
-        }
+        style_draw();
         scribble($"[Fnt][c_black] {text}").scale_to_box(area[2] - area[0] - string_width("X") - 2, area[3] - area[1] - 3, true).draw(area[0], area[1]);
         if (open) {
             self.ldepth = gpu_get_depth();
