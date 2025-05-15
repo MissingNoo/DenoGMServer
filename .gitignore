@@ -1,3 +1,4 @@
 build/
 DenoGMServer
 GMProject/builder
+node_modules

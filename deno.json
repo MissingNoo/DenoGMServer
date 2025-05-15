@@ -1,7 +1,10 @@
 {
   "tasks": {},
   "imports": {
-    "dgram": "npm:dgram@^1.0.1"
+    "dgram": "npm:dgram@^1.0.1",
+    "json": "npm:json@^11.0.0",
+    "node-redis": "npm:node-redis@^0.1.7",
+    "redis": "npm:redis@^5.0.1"
   },
 
   "lib": ["deno.ns", "dom"],
