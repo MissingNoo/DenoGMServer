@@ -9,7 +9,7 @@ if (keyboard_check_pressed(vk_f2)) {
 	new packet("joinRoom").write("roomName", lastroom).send();
 }
 if (keyboard_check_pressed(ord("R"))) {
-	AirNet.connection.reconnect()
+	AirNet.connection.reconnect();
 	alarm[0] = 120;
 	count = 0;
 }

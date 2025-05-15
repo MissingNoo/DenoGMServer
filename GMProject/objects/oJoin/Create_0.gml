@@ -19,7 +19,6 @@ code_input = new textbox();
 code_input.only_numbers = true;
 code_input.textcolor = "c_white";
 code_input.only_numbers = false;
-code_input.backspr = undefined;
 code_input.backtext = "Code Here";
 code_button = new button("Join Lobby");
 code_button.set_function(method(self, function() {
@@ -37,7 +36,5 @@ quit_button.set_function(method(self, function() {
     instance_activate_object(oMainMenu);
     instance_destroy(self);
 }));
-quit_button.set_sprite(sBlank);
-quit_button.set_back_sprite(sBlank);
 
 new packet("getRoomList").send();

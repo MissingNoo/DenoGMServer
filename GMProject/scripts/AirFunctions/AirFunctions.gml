@@ -118,6 +118,7 @@ global.elementselected = noone;
 global.listboxtimer = 60;
 
 function textbox() constructor {
+    type = "textbox";
     style = AirLibDefaultStyle;
 	only_numbers = false;
 	owner = noone;
@@ -253,6 +254,7 @@ enum AirLibBtnStyle {
     Rounded
 }
 function button(_text) constructor {
+    type = "button";
     style = AirLibDefaultStyle;
     use_text = true;
 	owner = noone;
@@ -406,6 +408,7 @@ function button(_text) constructor {
 }
 
 function listbox() constructor {
+    type = "listbox";
     style = AirLibDefaultStyle;
 	owner = noone;
     selected = "";
@@ -483,13 +486,13 @@ function listbox() constructor {
                 	global.listboxopen = true;
 				    global.elementselected = self;
                     open = true;
-                } else {
+                //} else if (global.elementselected != noone and global.elementselected.type == "listbox") {
+                } else if (!mouse_in_area_gui(openarea)){
                     AirLib.listframe = AirLib.frame + 10;
                     global.listboxopen = false;
-				    global.elementselected = noone;
+                    global.elementselected = noone;
                     open = false;
-                }
-                
+                } 
             //} else if (!mouse_in_area_gui(openarea)) {
             } else {
                 global.listboxopen = false;
@@ -526,6 +529,7 @@ function listbox() constructor {
                 _y = openarea[1] + offset; 
                 var click_area = [openarea[0], _y, openarea[2], openarea[3]];
                 if (mouse_in_area_gui(click_area) and device_mouse_check_button_pressed(0, mb_left)) {
+                    AirLib.listframe = AirLib.frame + 10;
                     text = list[i];
                     func_on_select(self);
                 }
