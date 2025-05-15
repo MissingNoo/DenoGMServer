@@ -1,13 +1,15 @@
 /// <reference lib="deno.ns" />
 import dgram from "node:dgram";
-import { joinRoom, leaveRoom, Player, players } from "./Player.ts";
+import { joinRoom, leaveRoom, Player, players, listPlayers } from "./Player.ts";
 import { createRoom, getRoomByCode, getRoomList, sendMessageToRoom } from "./Room.ts";
 import { randomUUID } from "node:crypto";
 import { sendMessage } from "./misc.ts";
+import { redis, set } from "./redis.ts";
 export const server = dgram.createSocket("udp4");
 const PORT = 36692;
 server.bind(PORT);
-server.on("message", (msg, rinfo) => {
+// deno-lint-ignore no-explicit-any
+server.on("message", (msg:any, rinfo:any) => {
   const data = JSON.parse(msg.toString());
   const player = players.find(
     (player) => player.address === rinfo.address && player.port === rinfo.port,
@@ -32,7 +34,7 @@ server.on("message", (msg, rinfo) => {
     const gen_uuid = randomUUID();
     const p: Player = {
       uuid: gen_uuid,
-      name: undefined,
+      name: gen_uuid,
       room: "",
       address: rinfo.address,
       port: rinfo.port,
@@ -40,6 +42,7 @@ server.on("message", (msg, rinfo) => {
       y: 0,
     };
     players.push(p);
+    redis.set("PlayerList", listPlayers().toString());
     sendMessage("uuid", { uuid: gen_uuid }, rinfo.address, rinfo.port);
     console.log(`[Main] Player ${gen_uuid} connected`);
   }

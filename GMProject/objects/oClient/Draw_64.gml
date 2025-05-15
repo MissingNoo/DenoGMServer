@@ -1,3 +1,6 @@
+if (instance_exists(oUIElement)) {
+	exit;
+}
 var p = [];
 for (var i = 0; i < array_length(AirNet.players_in_room); ++i) {
     array_push(p, AirNet.players_in_room[i].uuid);

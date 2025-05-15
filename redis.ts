@@ -5,3 +5,8 @@ export const redis = createClient({
 });
 
 await redis.connect();
+
+export async function set(k:string, v:string) {
+    await redis.set(k, v);
+    console.log(await redis.get("devilbox-version"));
+}

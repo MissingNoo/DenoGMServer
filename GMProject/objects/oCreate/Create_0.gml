@@ -30,12 +30,8 @@ quit_button.set_function(method(self, function() {
     instance_activate_object(oMainMenu);
     instance_destroy(self);
 }));
-quit_button.set_sprite(sBlank);
-quit_button.set_back_sprite(sBlank);
 
 create_button = new button("Create");
-create_button.set_sprite(sBlank);
-create_button.set_back_sprite(sBlank);
 create_button.set_function(method(self, function () {
     if (name_input.text != "") {
     	new packet("newRoom")

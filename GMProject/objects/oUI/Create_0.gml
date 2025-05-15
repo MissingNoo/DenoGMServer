@@ -685,7 +685,7 @@ str = {
   "width":1920.0,
   "top" : 35,
   "data":{
-    //image : wall4,
+    image : wall4,
   },
   "height":1080 - 35,
     flexDirection : "row",
@@ -954,3 +954,5 @@ add_to_list = function() {
 }
 
 //add_to_list();
+
+depth = -2001;

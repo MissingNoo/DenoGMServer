@@ -2,7 +2,8 @@ if (keyboard_check_pressed(ord("Z"))) {
 	debug_rooms();
 }
 if (keyboard_check_pressed(vk_f1)) {
-	
+    dbglog = !dbglog;
+	show_debug_log(dbglog);
 }
 if (keyboard_check_pressed(vk_f2)) {
 	new packet("joinRoom").write("roomName", lastroom).send();

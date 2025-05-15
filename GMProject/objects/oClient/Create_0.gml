@@ -10,3 +10,5 @@ AirNet.players_in_room = [];
 mx = mouse_x;
 my = mouse_y;
 room_code = undefined;
+dbglog = false;
+depth = 1000;
