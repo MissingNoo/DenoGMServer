@@ -24,6 +24,10 @@ code_button = new button("Join Lobby");
 code_button.set_function(method(self, function() {
 	new packet("joinCode").write("roomCode", code_input.text).send();
 }));
+reload_button = new button("R");
+reload_button.set_function(function() {
+    new packet("getRoomList").send();
+});
 bg = global.game_uis.bg;
 fg = global.game_uis.fg;
 roomsurf = undefined;

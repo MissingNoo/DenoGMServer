@@ -173,249 +173,10 @@ global.game_uis.main_menu = {
 
 global.game_uis.rooms = {
   "name":"main_panel",
-  "left":275.0,
-  "top":50.0,
-  "width":1280.0,
-  "data":{
-    "image":"sJoin"
-  },
-  "height":720.0,
   "nodes":[
     {
+      "flex":1.0,
       "name":"top_panel_grid",
-      "flexDirection":"row",
-      "left":0.0,
-      "flex":1.0,
-      "padding":0.0,
-      "top":0.0,
-      "data":{
-      },
-      "height":300.0,
-      "nodes":[
-        {
-          "flex":1.0,
-          "padding":0.0,
-          "width":60.0,
-          "data":{
-          },
-          "name":"grid_panel1"
-        },
-        {
-          "name":"grid_panel2",
-          "margin":0.0,
-          "flex":1.0,
-          "padding":0.0,
-          "width":60.0,
-          "data":{
-          }
-        },
-        {
-          "flex":1.0,
-          "padding":0.0,
-          "width":60.0,
-          "data":{
-          },
-          "name":"grid_panel3"
-        }
-      ]
-    },
-    {
-      "name":"middle_panel_grid",
-      "flexDirection":"row",
-      "left":0.0,
-      "flex":1.0,
-      "padding":0.0,
-      "top":0.0,
-      "data":{
-      },
-      "height":300.0,
-      "nodes":[
-        {
-          "flex":1.0,
-          "padding":0.0,
-          "width":60.0,
-          "data":{
-          },
-          "name":"grid_panel4"
-        },
-        {
-          "name":"grid_panel5",
-          "margin":0.0,
-          "minWidth":515.0,
-          "flex":1.0,
-          "padding":0.0,
-          "width":60.0,
-          "data":{
-          },
-          "border":0.0,
-          "nodes":[
-            {
-              "marginBottom":0.0,
-              "maxHeight":361.0,
-              "name":"join_panel",
-              "flex":1.0,
-              "padding":10.0,
-              "minHeight":435.0,
-              "data":{
-              },
-              "nodes":[
-                {
-                  "padding":0.0,
-                  "width":60.0,
-                  "data":{
-                  },
-                  "height":16.0,
-                  "name":"join_label"
-                },
-                {
-                  "name":"code_panel",
-                  "flexDirection":"row",
-                  "padding":10.0,
-                  "data":{
-                  },
-                  "height":41.0,
-                  "nodes":[
-                    {
-                      "name":"code_label",
-                      "flex":1.0,
-                      "padding":10.0,
-                      "width":60.0,
-                      "data":{
-                      },
-                      "height":25.0
-                    },
-                    {
-                      "name":"spacer",
-                      "flex":1.0,
-                      "padding":10.0,
-                      "width":60.0,
-                      "data":{
-                      },
-                      "height":25.0
-                    },
-                    {
-                      "name":"code_input",
-                      "top":0.0,
-                      "width":152.0,
-                      "data":{
-                      },
-                      "height":25.0,
-                      "marginLeft":0.0,
-                      "marginRight":4.0
-                    },
-                    {
-                      "top":0.0,
-                      "width":160.0,
-                      "data":{
-                      },
-                      "height":25.0,
-                      "name":"join_button"
-                    }
-                  ],
-                  "marginTop":14.0,
-                  "marginBottom":0.0
-                },
-                {
-                  "name":"panel_51891",
-                  "flexDirection":"row",
-                  "flex":1.0,
-                  "padding":0.0,
-                  "data":{
-                  },
-                  "height":60.0,
-                  "nodes":[
-                    {
-                      "name":"filters",
-                      "minWidth":211.0,
-                      "padding":10.0,
-                      "width":60.0,
-                      "data":{
-                      },
-                      "marginTop":10.0
-                    },
-                    {
-                      "marginTop":10.0,
-                      "name":"room_panel",
-                      "flex":1.0,
-                      "padding":10.0,
-                      "width":60.0,
-                      "data":{
-                      },
-                      "marginLeft":5.0,
-                      "nodes":[
-                        {
-                          "flex":1.0,
-                          "padding":10.0,
-                          "data":{
-                          },
-                          "name":"room_list",
-                          "marginRight":12.0
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ],
-              "marginTop":-98.0
-            }
-          ]
-        },
-        {
-          "name":"grid_panel6",
-          "flex":1.0,
-          "flexBasis":0.0,
-          "padding":0.0,
-          "width":60.0,
-          "data":{
-          }
-        }
-      ]
-    },
-    {
-      "name":"bottom_panel_grid",
-      "flexDirection":"row",
-      "left":0.0,
-      "flex":1.0,
-      "padding":0.0,
-      "top":0.0,
-      "data":{
-      },
-      "height":300.0,
-      "nodes":[
-        {
-          "name":"grid_panel7",
-          "margin":0.0,
-          "flex":1.0,
-          "padding":0.0,
-          "width":60.0,
-          "data":{
-          }
-        },
-        {
-          "flex":1.0,
-          "padding":0.0,
-          "width":60.0,
-          "data":{
-          },
-          "name":"grid_panel8"
-        },
-        {
-          "flex":1.0,
-          "padding":0.0,
-          "width":60.0,
-          "data":{
-          },
-          "name":"grid_panel9"
-        }
-      ]
-    }
-  ]
-}
-
-global.game_uis.create = {
-  "nodes":[
-    {
-      "flex":1.0,
       "nodes":[
         {
           "flex":1.0,
@@ -443,7 +204,6 @@ global.game_uis.create = {
           "name":"grid_panel3"
         }
       ],
-      "name":"top_panel_grid",
       "left":0.0,
       "padding":0.0,
       "top":0.0,
@@ -454,6 +214,7 @@ global.game_uis.create = {
     },
     {
       "flex":1.0,
+      "name":"middle_panel_grid",
       "nodes":[
         {
           "flex":1.0,
@@ -465,10 +226,279 @@ global.game_uis.create = {
         },
         {
           "flex":1.0,
-          "border":0.0,
+          "name":"grid_panel5",
           "nodes":[
             {
               "flex":1.0,
+              "name":"join_panel",
+              "nodes":[
+                {
+                  "padding":0.0,
+                  "width":60.0,
+                  "data":{
+                  },
+                  "height":16.0,
+                  "name":"join_label"
+                },
+                {
+                  "name":"code_panel",
+                  "nodes":[
+                    {
+                      "flex":1.0,
+                      "name":"code_label",
+                      "padding":10.0,
+                      "width":60.0,
+                      "data":{
+                      },
+                      "height":25.0
+                    },
+                    {
+                      "flex":1.0,
+                      "name":"spacer",
+                      "padding":10.0,
+                      "width":60.0,
+                      "data":{
+                      },
+                      "height":25.0
+                    },
+                    {
+                      "marginRight":4.0,
+                      "name":"code_input",
+                      "marginLeft":0.0,
+                      "top":0.0,
+                      "width":152.0,
+                      "data":{
+                      },
+                      "height":25.0
+                    },
+                    {
+                      "top":0.0,
+                      "width":160.0,
+                      "data":{
+                      },
+                      "height":25.0,
+                      "name":"join_button"
+                    }
+                  ],
+                  "marginTop":14.0,
+                  "marginBottom":0.0,
+                  "padding":10.0,
+                  "data":{
+                  },
+                  "height":41.0,
+                  "flexDirection":"row"
+                },
+                {
+                  "flex":1.0,
+                  "name":"panel_51891",
+                  "nodes":[
+                    {
+                      "name":"filters",
+                      "marginTop":10.0,
+                      "minWidth":211.0,
+                      "padding":10.0,
+                      "width":60.0,
+                      "data":{
+                      }
+                    },
+                    {
+                      "flex":1.0,
+                      "name":"room_panel",
+                      "nodes":[
+                        {
+                          "marginRight":12.0,
+                          "name":"panel_86484",
+                          "nodes":[
+                            {
+                              "flex":1.0,
+                              "name":"spacer",
+                              "padding":10.0,
+                              "width":60.0,
+                              "data":{
+                              },
+                              "flexDirection":"row"
+                            },
+                            {
+                              "padding":10.0,
+                              "width":32.0,
+                              "data":{
+                              },
+                              "height":32.0,
+                              "name":"reload_button"
+                            }
+                          ],
+                          "padding":10.0,
+                          "data":{
+                          },
+                          "height":52.0,
+                          "flexDirection":"row"
+                        },
+                        {
+                          "flex":1.0,
+                          "padding":10.0,
+                          "marginRight":12.0,
+                          "data":{
+                          },
+                          "name":"room_list"
+                        }
+                      ],
+                      "marginLeft":5.0,
+                      "marginTop":10.0,
+                      "padding":10.0,
+                      "width":60.0,
+                      "data":{
+                      }
+                    }
+                  ],
+                  "padding":0.0,
+                  "data":{
+                  },
+                  "height":60.0,
+                  "flexDirection":"row"
+                }
+              ],
+              "marginTop":-98.0,
+              "marginBottom":0.0,
+              "maxHeight":361.0,
+              "padding":10.0,
+              "minHeight":435.0,
+              "data":{
+              }
+            }
+          ],
+          "border":0.0,
+          "minWidth":515.0,
+          "padding":0.0,
+          "width":60.0,
+          "data":{
+          },
+          "margin":0.0
+        },
+        {
+          "flex":1.0,
+          "flexBasis":0.0,
+          "name":"grid_panel6",
+          "padding":0.0,
+          "width":60.0,
+          "data":{
+          }
+        }
+      ],
+      "left":0.0,
+      "padding":0.0,
+      "top":0.0,
+      "data":{
+      },
+      "height":300.0,
+      "flexDirection":"row"
+    },
+    {
+      "flex":1.0,
+      "name":"bottom_panel_grid",
+      "nodes":[
+        {
+          "flex":1.0,
+          "name":"grid_panel7",
+          "padding":0.0,
+          "width":60.0,
+          "data":{
+          },
+          "margin":0.0
+        },
+        {
+          "flex":1.0,
+          "padding":0.0,
+          "width":60.0,
+          "data":{
+          },
+          "name":"grid_panel8"
+        },
+        {
+          "flex":1.0,
+          "padding":0.0,
+          "width":60.0,
+          "data":{
+          },
+          "name":"grid_panel9"
+        }
+      ],
+      "left":0.0,
+      "padding":0.0,
+      "top":0.0,
+      "data":{
+      },
+      "height":300.0,
+      "flexDirection":"row"
+    }
+  ],
+  "left":275.0,
+  "top":50.0,
+  "width":1280.0,
+  "data":{
+    "image":"sJoin"
+  },
+  "height":720.0
+}
+
+global.game_uis.create = {
+  "name":"main_panel",
+  "nodes":[
+    {
+      "flex":1.0,
+      "name":"top_panel_grid",
+      "nodes":[
+        {
+          "flex":1.0,
+          "padding":0.0,
+          "width":60.0,
+          "data":{
+          },
+          "name":"grid_panel1"
+        },
+        {
+          "flex":1.0,
+          "name":"grid_panel2",
+          "padding":0.0,
+          "width":60.0,
+          "data":{
+          },
+          "margin":0.0
+        },
+        {
+          "flex":1.0,
+          "padding":0.0,
+          "width":60.0,
+          "data":{
+          },
+          "name":"grid_panel3"
+        }
+      ],
+      "left":0.0,
+      "padding":0.0,
+      "top":0.0,
+      "data":{
+      },
+      "height":300.0,
+      "flexDirection":"row"
+    },
+    {
+      "flex":1.0,
+      "name":"middle_panel_grid",
+      "nodes":[
+        {
+          "flex":1.0,
+          "padding":0.0,
+          "width":60.0,
+          "data":{
+          },
+          "name":"grid_panel4"
+        },
+        {
+          "flex":1.0,
+          "nodes":[
+            {
+              "flex":1.0,
+              "name":"create_panel",
               "nodes":[
                 {
                   "padding":10.0,
@@ -481,10 +511,11 @@ global.game_uis.create = {
                 {
                   "flex":1.0,
                   "marginRight":8.0,
-                  "marginLeft":6.0,
+                  "name":"options_panel",
                   "nodes":[
                     {
                       "flex":0.0,
+                      "name":"name_panel",
                       "nodes":[
                         {
                           "padding":0.0,
@@ -503,13 +534,13 @@ global.game_uis.create = {
                         },
                         {
                           "padding":10.0,
-                          "width":540.0,
+                          "maxWidth":540.0,
+                        "flex" : 4.0,
                           "data":{
                           },
                           "name":"name_input"
                         }
                       ],
-                      "name":"name_panel",
                       "marginTop":0.0,
                       "padding":0.0,
                       "data":{
@@ -518,6 +549,7 @@ global.game_uis.create = {
                       "flexDirection":"row"
                     },
                     {
+                      "name":"type_panel",
                       "nodes":[
                         {
                           "padding":10.0,
@@ -542,7 +574,6 @@ global.game_uis.create = {
                           "name":"type_selection"
                         }
                       ],
-                      "name":"type_panel",
                       "marginTop":7.0,
                       "padding":0.0,
                       "data":{
@@ -551,13 +582,14 @@ global.game_uis.create = {
                       "flexDirection":"row"
                     },
                     {
+                      "name":"maxplayer_panel",
                       "nodes":[
                         {
                           "padding":10.0,
                           "width":60.0,
                           "data":{
                           },
-                          "name":"maxp_label"
+                          "name":"panel_80175"
                         },
                         {
                           "flex":1.0,
@@ -575,7 +607,6 @@ global.game_uis.create = {
                           "name":"maxp_selection"
                         }
                       ],
-                      "name":"maxplayer_panel",
                       "marginTop":7.0,
                       "padding":0.0,
                       "data":{
@@ -584,13 +615,14 @@ global.game_uis.create = {
                       "flexDirection":"row"
                     },
                     {
+                      "name":"request_panel",
                       "nodes":[
                         {
                           "padding":10.0,
                           "width":60.0,
                           "data":{
                           },
-                          "name":"request_label"
+                          "name":"panel_87494"
                         },
                         {
                           "flex":1.0,
@@ -608,7 +640,6 @@ global.game_uis.create = {
                           "name":"request_selection"
                         }
                       ],
-                      "name":"request_panel",
                       "marginTop":7.0,
                       "padding":0.0,
                       "data":{
@@ -617,39 +648,68 @@ global.game_uis.create = {
                       "flexDirection":"row"
                     },
                     {
+                      "flex":1.0,
+                      "name":"end_spacer",
+                      "padding":0.0,
+                      "width":60.0,
+                      "data":{
+                      },
+                      "height":0.0
+                    },
+                    {
+                      "flex":0.0,
+                      "name":"end_panel",
                       "nodes":[
                         {
                           "flex":1.0,
+                          "name":"spacer",
                           "padding":10.0,
                           "width":60.0,
                           "data":{
                           },
-                          "name":"spacer"
+                          "margin":9.0
                         },
                         {
-                          "marginRight":-50.0,
-                          "marginLeft":0.0,
-                          "name":"create_button",
-                          "marginTop":-10.0,
-                          "padding":10.0,
-                          "width":165.0,
+                          "padding":0.0,
+                          "width":60.0,
+                        "marginRight" : 50.0,
                           "data":{
                           },
-                          "height":40.0
+                          "name":"create_b_panel",
+                          "nodes":[
+                            {
+                              "flex":1.0,
+                              "name":"create_b_spacer",
+                              "padding":10.0,
+                              "width":60.0,
+                              "data":{
+                              },
+                              "height":60.0
+                            },
+                            {
+                              "flex":0.0,
+                              "name":"create_button",
+                              "padding":10.0,
+                              "width":165.0,
+                              "data":{
+                              },
+                              "height":40.0
+                            }
+                          ]
                         }
                       ],
-                      "marginTop":42.0,
-                      "name":"end_panel",
-                      "padding":10.0,
+                      "marginTop":0.0,
+                      "padding":0.0,
+                      "top":0.0,
                       "data":{
                       },
                       "height":60.0,
-                      "margin":0.0,
-                      "flexDirection":"row"
+                      "flexDirection":"row",
+                      "margin":0.0
                     }
                   ],
+                  "marginLeft":6.0,
                   "marginTop":8.0,
-                  "name":"options_panel",
                   "marginBottom":10.0,
                   "padding":10.0,
                   "data":{
@@ -657,20 +717,20 @@ global.game_uis.create = {
                   "height":150.0
                 }
               ],
-              "name":"create_panel",
               "padding":10.0,
               "data":{
-              },
-              "height":60.0
+              }
             }
           ],
-          "name":"grid_panel5",
+          "border":0.0,
           "minWidth":511.0,
-          "minHeight":0.0,
-          "padding":0.0,
           "width":60.0,
           "data":{
           },
+          "height":302.0,
+          "name":"grid_panel5",
+          "padding":0.0,
+          "minHeight":0.0,
           "margin":0.0
         },
         {
@@ -683,17 +743,17 @@ global.game_uis.create = {
           }
         }
       ],
-      "name":"middle_panel_grid",
       "left":0.0,
       "padding":0.0,
       "top":0.0,
       "data":{
       },
-      "height":300.0,
+      "height":633.0,
       "flexDirection":"row"
     },
     {
       "flex":1.0,
+      "name":"bottom_panel_grid",
       "nodes":[
         {
           "flex":1.0,
@@ -721,17 +781,15 @@ global.game_uis.create = {
           "name":"grid_panel9"
         }
       ],
-      "name":"bottom_panel_grid",
       "left":0.0,
       "padding":0.0,
       "top":0.0,
       "data":{
       },
-      "height":300.0,
+      "height":-27590.0,
       "flexDirection":"row"
     }
   ],
-  "name":"main_panel",
   "left":275.0,
   "top":50.0,
   "width":1280.0,
@@ -740,4 +798,3 @@ global.game_uis.create = {
   },
   "height":720.0
 }
-

@@ -81,6 +81,9 @@ ui.foreach(function(name, pos, data) {
 			surface_reset_target();
 			draw_surface_part_area(roomsurf, area);
 			break;
+        case "reload_button":
+            reload_button.position(_x, _y, _x + _w, _y + _h);
+            reload_button.draw();
 		default:
 			//if (string_contains(name, "grid")) {
 			//    break;

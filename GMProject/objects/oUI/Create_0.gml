@@ -685,7 +685,7 @@ str = {
   "width":1920.0,
   "top" : 35,
   "data":{
-    image : wall4,
+    image : "wall4",
   },
   "height":1080 - 35,
     flexDirection : "row",
@@ -699,7 +699,7 @@ str = {
     name : "panel_side",
 	maxWidth : 30,
     flex : 0.15,
-	data : {image : sButton},
+	data : {image : wall4},
 nodes : [
     {
       "padding":10.0,

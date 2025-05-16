@@ -6,8 +6,11 @@ import { randomUUID } from "node:crypto";
 import { sendMessage } from "./misc.ts";
 import { redis, set } from "./redis.ts";
 export const server = dgram.createSocket("udp4");
+redis.set("PlayerList", listPlayers().toString());
+
 const PORT = 36692;
 server.bind(PORT);
+
 // deno-lint-ignore no-explicit-any
 server.on("message", (msg:any, rinfo:any) => {
   const data = JSON.parse(msg.toString());
@@ -108,6 +111,7 @@ server.on("message", (msg:any, rinfo:any) => {
         const index = players.indexOf(player);
         players.splice(index, 1);
         console.log(`[Main] Player ${player.uuid} disconnected`);
+        redis.set("PlayerList", listPlayers().toString());
         break;
       }
 

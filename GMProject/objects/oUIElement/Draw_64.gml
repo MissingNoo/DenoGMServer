@@ -2,13 +2,46 @@
 draw_set_color(c_white);
 if (draw_back)
 {
-	draw_sprite_stretched(sButton, 1, x, y, width, height);
+    switch (AirLibDefaultStyle) {
+    	case AirLibBtnStyle.Default:
+            draw_sprite_stretched(sButton, 1, x, y, width, height);
+            break;
+        case AirLibBtnStyle.Flat:
+            draw_set_color(global.game_uis.bg);
+            draw_rectangle(x, y, width, height, false);
+            draw_set_color(c_white);
+            break;
+        case AirLibBtnStyle.Rounded:
+            draw_set_color(global.game_uis.bg);
+		    draw_roundrect_ext(x, y, width, height, global.game_uis.roundx, global.game_uis.roundy, false);
+		    draw_set_color(c_white);
+            break;
+    } 
 }
 
 // Draw image (e.g. an icon)
 if (image != -1)
 {
-	draw_sprite_stretched(image, 1, x, y, width, height);
+    if (image == sButton) {
+        switch (AirLibDefaultStyle) {
+        	case AirLibBtnStyle.Default:
+                draw_sprite_stretched(sButton, 1, x, y, width, height);
+                break;
+            case AirLibBtnStyle.Flat:
+                draw_set_color(global.game_uis.bg);
+                draw_rectangle(x, y, width, height, false);
+                draw_set_color(c_white);
+                break;
+            case AirLibBtnStyle.Rounded:
+                draw_set_color(global.game_uis.bg);
+    		    draw_roundrect_ext(x, y, width, height, global.game_uis.roundx, global.game_uis.roundy, false);
+    		    draw_set_color(c_white);
+                break;
+        }
+     } else {
+    	draw_sprite_stretched(image, 1, x, y, width, height);
+    }
+	
 }
 
 // Draw bar image (e.g. for health bars)

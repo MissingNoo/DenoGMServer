@@ -20,6 +20,7 @@ function window(struct, _generate = false) constructor {
     }
 		
 	static foreach = function(_function, node = undefined) {
+        fit_to_gui();
         if (!visible) { exit; }
 		node ??= root;
 		var pos = flexpanel_node_layout_get_position(node, false);
