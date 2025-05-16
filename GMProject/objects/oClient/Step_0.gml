@@ -1,5 +1,5 @@
 if (room != rUIEditor) {
-	display_set_gui_size(window_get_width(), window_get_height());
+	//display_set_gui_size(window_get_width(), window_get_height());
 }
 
 if (keyboard_check_pressed(ord("Z"))) {

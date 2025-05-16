@@ -5,9 +5,12 @@
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $api_db from "./routes/api/db.ts";
+import * as $api_players from "./routes/api/players.ts";
 import * as $greet_name_ from "./routes/greet/[name].tsx";
+import * as $header from "./routes/header.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $Counter from "./islands/Counter.tsx";
+import * as $online_counter from "./islands/online_counter.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -15,11 +18,14 @@ const manifest = {
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
     "./routes/api/db.ts": $api_db,
+    "./routes/api/players.ts": $api_players,
     "./routes/greet/[name].tsx": $greet_name_,
+    "./routes/header.tsx": $header,
     "./routes/index.tsx": $index,
   },
   islands: {
     "./islands/Counter.tsx": $Counter,
+    "./islands/online_counter.tsx": $online_counter,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;
