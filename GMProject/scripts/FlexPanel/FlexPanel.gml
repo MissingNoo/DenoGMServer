@@ -2,6 +2,44 @@
 global.edit_mode = false;
 global.edit_node = undefined;
 global.edit_node_owner = undefined;
+function flexpanel_draw_tags(tags, pos) {
+    for (var i = 0; i < array_length(tags); i++) {
+        var tag = tags[i];
+        switch (tag) {
+            case "bg":
+                draw_bg_fg(global.game_uis.bg, pos);
+                break;
+            case "fg":
+                draw_bg_fg(global.game_uis.fg, pos);
+                break;
+            case "input":
+                draw_bg_fg(global.game_uis.input_bg, pos);
+                break;
+            case "button":
+                draw_bg_fg(global.game_uis.button_bg, pos);
+                break;
+                
+        }
+    }
+}
+
+function draw_bg_fg(bg = global.game_uis.bg, pos = {}) {
+    switch (AirLibDefaultStyle) {
+        case AirLibBtnStyle.Default:
+            draw_sprite_stretched(AirLibDefaultBGSprite, 0, pos.left, pos.top, pos.left + pos.width, pos.top + pos.height);
+            break;
+        case AirLibBtnStyle.Flat:
+            draw_set_color(bg);
+            draw_rectangle(pos.left, pos.top, pos.left + pos.width, pos.top + pos.height, false);
+            draw_set_color(c_white);
+            break;
+        case AirLibBtnStyle.Rounded:
+            draw_set_color(bg);
+            draw_roundrect_ext(pos.left, pos.top, pos.left + pos.width, pos.top + pos.height, global.game_uis.roundx, global.game_uis.roundy, false);
+            draw_set_color(c_white);
+            break;
+    }
+}
 function window(struct, _generate = false) constructor {
     visible = true;
     ostruct = struct;
@@ -20,14 +58,20 @@ function window(struct, _generate = false) constructor {
     }
 		
 	static foreach = function(_function, node = undefined) {
-        fit_to_gui();
+        //fit_to_gui();
         if (!visible) { exit; }
 		node ??= root;
 		var pos = flexpanel_node_layout_get_position(node, false);
 		var _name = flexpanel_node_get_name(node);
 		var _data = flexpanel_node_get_data(node);
-		_function(_name, pos, _data);
-		
+        
+        #region tags
+        if (!is_undefined(_data[$ "tags"])) {
+            flexpanel_draw_tags(_data.tags, pos);
+        }
+        #endregion
+        _function(_name, pos, _data);
+        
 		var _children_count = flexpanel_node_get_num_children(node);
 		for (var i = 0; i < _children_count; i++)
 		{

@@ -3,10 +3,10 @@ import { createClient } from "redis";
 export const redis = createClient({
     url: "redis://localhost:6379",
 });
-
-await redis.connect();
-
-export async function set(k:string, v:string) {
-    await redis.set(k, v);
-    console.log(await redis.get("devilbox-version"));
+try {
+    await redis.connect();
+    console.log("[Redis] Connected!");
+} catch (_error) {
+    console.error("[Redis] Can't connect to the DB!");
+    Deno.exit();
 }

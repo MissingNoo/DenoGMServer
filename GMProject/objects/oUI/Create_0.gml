@@ -647,6 +647,17 @@ top = {
           },
           "name":"button_save_as"
         },
+        {
+          "width":60.0,
+          "data":{
+            text : "Tags",
+			f : function() {
+                var data = flexpanel_node_get_data(oEditableUI.ui.get_child(oUI.last_edit));
+                instance_create_depth(0, 0, 6000, oTagManager, { data });
+			}
+          },
+          "name":"button_tag_editor"
+        },
         //{
         //  "width":32.0,
         //  "data":{
@@ -685,7 +696,7 @@ str = {
   "width":1920.0,
   "top" : 35,
   "data":{
-    image : "wall4",
+    //image : "wall4",
   },
   "height":1080 - 35,
     flexDirection : "row",
@@ -699,7 +710,9 @@ str = {
     name : "panel_side",
 	maxWidth : 30,
     flex : 0.15,
-	data : {image : wall4},
+	data : {
+        //image : wall4
+        },
 nodes : [
     {
       "padding":10.0,

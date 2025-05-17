@@ -8,18 +8,8 @@ ui.foreach(function(name, pos, data) {
 	var area = [_x, _y, _x + _w, _y + _h];
     switch (name) {
 		case "join_panel":
-			draw_set_color(bg);
-		    draw_roundrect_ext(_x, _y, _x + _w, _y + _h, roundness_x, roundness_y, false);
-            draw_set_color(global.game_uis.button_bg);
-		    draw_roundrect_ext(_x + _w - 20, _y - 20, _x + _w + 20, _y + 20, global.game_uis.roundx, global.game_uis.roundy, false);
-			draw_set_color(c_white);
             quit_button.position(_x + _w - 20, _y - 20, _x + _w + 20, _y + 20);
             quit_button.draw();
-			break;
-		case "code_panel":
-			draw_set_color(fg);
-		    draw_roundrect_ext(_x, _y, _x + _w, _y + _h, roundness_x, roundness_y, false);
-			draw_set_color(c_white);
 			break;
 		case "code_label":
 			scribble($"[c_black][fa_middle]Join game from code").scale(room_list_title_scale).draw(_x + room_list_title_x, _y + _h / 2);
@@ -31,20 +21,10 @@ ui.foreach(function(name, pos, data) {
 			code_button.set_position_area(area);
 			code_button.draw();
 			break;
-		case "filters":
-			draw_set_color(fg);
-		    draw_roundrect_ext(_x, _y, _x + _w, _y + _h, roundness_x, roundness_y, false);
-			draw_set_color(c_white);
-			break;
 		case "code_input":
 			draw_roundrect_ext(_x, _y, _x + _w, _y + _h, roundness_x, roundness_y, true);
 			code_input.position(_x, _y, _x + _w, _y + _h);
 			code_input.draw();
-			break;
-		case "room_panel":
-			draw_set_color(fg);
-		    draw_roundrect_ext(_x, _y, _x + _w, _y + _h, roundness_x, roundness_y, false);
-			draw_set_color(c_white);
 			break;
 		case "room_list":
 			if (mouse_in_area_gui(area)) {

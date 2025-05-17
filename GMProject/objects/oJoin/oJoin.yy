@@ -10,8 +10,8 @@
   "name":"oJoin",
   "overriddenProperties":[],
   "parent":{
-    "name":"DenoTest1",
-    "path":"DenoTest1.yyp",
+    "name":"AirNetworking",
+    "path":"folders/AirNetworking.yy",
   },
   "parentObjectId":null,
   "persistent":false,

@@ -19,14 +19,7 @@ ui.foreach(function(name, pos, data) {
         case "type_label":
 			scribble($"[c_black][fa_middle]Type:").scale(1).draw(_x + 0, _y + _h / 2);
 			break;
-        case "options_panel":
-			draw_set_color(global.game_uis.fg);
-		    draw_roundrect_ext(_x, _y, _x + _w, _y + _h, global.game_uis.roundx, global.game_uis.roundy, false);
-			draw_set_color(c_white);
-			break;
         case "create_panel":
-			draw_set_color(global.game_uis.bg);
-		    draw_roundrect_ext(_x, _y, _x + _w, _y + _h, global.game_uis.roundx, global.game_uis.roundy, false);
             quit_button.position(_x + _w - 20, _y - 20, _x + _w + 20, _y + 20);
             quit_button.draw();
 			break;

@@ -284,6 +284,7 @@ global.game_uis.rooms = {
                   "marginBottom":0.0,
                   "padding":10.0,
                   "data":{
+                    "tags" : ["fg"]
                   },
                   "height":41.0,
                   "flexDirection":"row"
@@ -299,6 +300,7 @@ global.game_uis.rooms = {
                       "padding":10.0,
                       "width":60.0,
                       "data":{
+                        "tags" : ["fg"]
                       }
                     },
                     {
@@ -329,6 +331,7 @@ global.game_uis.rooms = {
                           ],
                           "padding":10.0,
                           "data":{
+                            
                           },
                           "height":52.0,
                           "flexDirection":"row"
@@ -347,6 +350,7 @@ global.game_uis.rooms = {
                       "padding":10.0,
                       "width":60.0,
                       "data":{
+                        "tags" : ["fg"]
                       }
                     }
                   ],
@@ -363,6 +367,7 @@ global.game_uis.rooms = {
               "padding":10.0,
               "minHeight":435.0,
               "data":{
+                "tags" : ["bg"]
               }
             }
           ],
@@ -371,6 +376,7 @@ global.game_uis.rooms = {
           "padding":0.0,
           "width":60.0,
           "data":{
+            
           },
           "margin":0.0
         },
@@ -713,12 +719,14 @@ global.game_uis.create = {
                   "marginBottom":10.0,
                   "padding":10.0,
                   "data":{
+                    "tags" : ["fg"]
                   },
                   "height":150.0
                 }
               ],
               "padding":10.0,
               "data":{
+                "tags" : ["bg"]
               }
             }
           ],

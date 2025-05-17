@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"Script108",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Script108",
+  "parent":{
+    "name":"AirLib",
+    "path":"folders/AirLib.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

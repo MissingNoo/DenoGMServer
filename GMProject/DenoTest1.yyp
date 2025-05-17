@@ -11,6 +11,7 @@
   "defaultScriptType":1,
   "Folders":[
     {"$GMFolder":"","%Name":"AirLib","folderPath":"folders/AirLib.yy","name":"AirLib","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"UIEditor_Obj","folderPath":"folders/AirLib/UIEditor_Obj.yy","name":"UIEditor_Obj","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"AirNetworking","folderPath":"folders/AirNetworking.yy","name":"AirNetworking","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Scribble","folderPath":"folders/Scribble.yy","name":"Scribble","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"(System - don't call these functions)","folderPath":"folders/Scribble/(System - don't call these functions).yy","name":"(System - don't call these functions)","resourceType":"GMFolder","resourceVersion":"2.0",},
@@ -52,6 +53,7 @@
     {"id":{"name":"oJoin","path":"objects/oJoin/oJoin.yy",},},
     {"id":{"name":"oMainMenu","path":"objects/oMainMenu/oMainMenu.yy",},},
     {"id":{"name":"oOtherPlayer","path":"objects/oOtherPlayer/oOtherPlayer.yy",},},
+    {"id":{"name":"oTagManager","path":"objects/oTagManager/oTagManager.yy",},},
     {"id":{"name":"oUI","path":"objects/oUI/oUI.yy",},},
     {"id":{"name":"oUIElement","path":"objects/oUIElement/oUIElement.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
@@ -157,6 +159,7 @@
     {"id":{"name":"scribble_whitelist_sprite","path":"scripts/scribble_whitelist_sprite/scribble_whitelist_sprite.yy",},},
     {"id":{"name":"scribble","path":"scripts/scribble/scribble.yy",},},
     {"id":{"name":"Script1","path":"scripts/Script1/Script1.yy",},},
+    {"id":{"name":"Script108","path":"scripts/Script108/Script108.yy",},},
     {"id":{"name":"string_height_scribble_ext","path":"scripts/string_height_scribble_ext/string_height_scribble_ext.yy",},},
     {"id":{"name":"string_height_scribble","path":"scripts/string_height_scribble/string_height_scribble.yy",},},
     {"id":{"name":"string_length_scribble","path":"scripts/string_length_scribble/string_length_scribble.yy",},},

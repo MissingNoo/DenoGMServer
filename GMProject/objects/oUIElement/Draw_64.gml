@@ -1,19 +1,26 @@
 //feather ignore all
 draw_set_color(c_white);
-if (draw_back)
-{
+if (!is_undefined(data[$ "tags"])) {
+	flexpanel_draw_tags(data.tags, {
+        top : y,
+        left : x,
+        width,
+        height
+    });
+}
+if (draw_back) {
     switch (AirLibDefaultStyle) {
     	case AirLibBtnStyle.Default:
             draw_sprite_stretched(sButton, 1, x, y, width, height);
             break;
         case AirLibBtnStyle.Flat:
             draw_set_color(global.game_uis.bg);
-            draw_rectangle(x, y, width, height, false);
+            draw_rectangle(x, y, x + width, y + height, false);
             draw_set_color(c_white);
             break;
         case AirLibBtnStyle.Rounded:
             draw_set_color(global.game_uis.bg);
-		    draw_roundrect_ext(x, y, width, height, global.game_uis.roundx, global.game_uis.roundy, false);
+		    draw_roundrect_ext(x, y, x + width, y + height, global.game_uis.roundx, global.game_uis.roundy, false);
 		    draw_set_color(c_white);
             break;
     } 
@@ -29,12 +36,12 @@ if (image != -1)
                 break;
             case AirLibBtnStyle.Flat:
                 draw_set_color(global.game_uis.bg);
-                draw_rectangle(x, y, width, height, false);
+                draw_rectangle(x, y, x + width, y + height, false);
                 draw_set_color(c_white);
                 break;
             case AirLibBtnStyle.Rounded:
                 draw_set_color(global.game_uis.bg);
-    		    draw_roundrect_ext(x, y, width, height, global.game_uis.roundx, global.game_uis.roundy, false);
+    		    draw_roundrect_ext(x, y, x + width, y + height, global.game_uis.roundx, global.game_uis.roundy, false);
     		    draw_set_color(c_white);
                 break;
         }

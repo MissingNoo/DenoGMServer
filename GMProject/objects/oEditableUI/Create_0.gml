@@ -5,11 +5,12 @@ edit_node = undefined;
 node = undefined;
 creating = false;
 
-str = {
+grid_template = {
   "width":1280.0,
   "name":"main_panel",
   "height":720.0,
   "top":50.0,
+
   "data":{
   },
   "nodes":[
@@ -132,9 +133,18 @@ str = {
   ],
   "left":275.0
 }
-str = global.game_uis.rooms;
-//ui = new window(global.player_info_ui);
-ui = new window(str, true);
+clear_template = {
+    "width":1280.0,
+    "name":"main_panel",
+    "height":720.0,
+    "top":50.0,
+    "data":{
+    },
+    "left":275.0
+};
+//template = global.game_uis.rooms;
+template = grid_template;
+ui = new window(template, true);
 ui.edit_mode();
 
 new_window = function() {
@@ -175,3 +185,4 @@ load = function() {
 	//ui.edit_mode();
 }
 
+depth = depth + 1;

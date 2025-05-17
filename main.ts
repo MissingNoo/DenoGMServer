@@ -4,10 +4,10 @@ import { joinRoom, leaveRoom, Player, players, listPlayers } from "./Player.ts";
 import { createRoom, getRoomByCode, getRoomList, sendMessageToRoom } from "./Room.ts";
 import { randomUUID } from "node:crypto";
 import { sendMessage } from "./misc.ts";
-import { redis, set } from "./redis.ts";
+import { redis } from "./redis.ts";
+import { mongo } from "./mongo.ts";
 export const server = dgram.createSocket("udp4");
 redis.set("PlayerList", listPlayers().toString());
-
 const PORT = 36692;
 server.bind(PORT);
 
