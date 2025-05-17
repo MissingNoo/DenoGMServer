@@ -1,6 +1,0 @@
-{
-  "IP": "127.0.0.1",
-  "Port": 36692,
-  "Redis": "redis://localhost:6379",
-  "Mongo": "mongodb://127.0.0.1:27017"
-}
