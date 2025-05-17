@@ -81,9 +81,9 @@ function playerInRoom(
   return player.room !== "";
 }
 
-export function listPlayers():string[] {
-  let parr : string[] = [];
-  players.forEach(player => {
+export function listPlayers(): string[] {
+  let parr: string[] = [];
+  players.forEach((player) => {
     if (player.name != undefined) {
       parr.push(player.name);
     }

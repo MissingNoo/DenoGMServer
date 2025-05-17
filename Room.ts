@@ -7,14 +7,19 @@ export type Room = {
   Players: Player[];
   RoomName: string;
   password: string | undefined;
-  maxPlayers : number;
-  type : string;
-  code : string
+  maxPlayers: number;
+  type: string;
+  code: string;
 };
 
 export let rooms: Room[] = [];
 
-export function createRoom(roomName: string, password: string, maxPlayers:number, type : string) {
+export function createRoom(
+  roomName: string,
+  password: string,
+  maxPlayers: number,
+  type: string,
+) {
   if (getRoomByName(roomName)) {
     console.log(`[Room] Room ${roomName} already exists`);
     return undefined;
@@ -25,12 +30,14 @@ export function createRoom(roomName: string, password: string, maxPlayers:number
     Players: [],
     RoomName: roomName,
     password: password,
-    maxPlayers : maxPlayers,
-    code : randomUUID().split("-")[0],
-    type : type
+    maxPlayers: maxPlayers,
+    code: randomUUID().split("-")[0],
+    type: type,
   };
   rooms.push(newRoom);
-  console.log(`[Room] Created room: ${roomName} with ID: ${roomId} and code: ${newRoom.code} with max ${maxPlayers} players`);
+  console.log(
+    `[Room] Created room: ${roomName} with ID: ${roomId} and code: ${newRoom.code} with max ${maxPlayers} players`,
+  );
   console.log(`[Room] Current room count: ${rooms.length}`);
   return newRoom;
 }
@@ -45,21 +52,21 @@ export function deleteRoom(roomName: string) {
 }
 
 type roominfo = {
-  name : string,
-  players : number,
-  maxPlayers : number,
-  type : string
-}
+  name: string;
+  players: number;
+  maxPlayers: number;
+  type: string;
+};
 
 export function getRoomList() {
-  const roomlist:roominfo[] = [];
-  rooms.forEach(element => {
-    const r:roominfo = {
-      name : element.RoomName,
-      players : element.Players.length,
-      maxPlayers : element.maxPlayers,
-      type : element.type
-    }
+  const roomlist: roominfo[] = [];
+  rooms.forEach((element) => {
+    const r: roominfo = {
+      name: element.RoomName,
+      players: element.Players.length,
+      maxPlayers: element.maxPlayers,
+      type: element.type,
+    };
     roomlist.push(r);
   });
   return roomlist;

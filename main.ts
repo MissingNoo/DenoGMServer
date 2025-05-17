@@ -1,7 +1,12 @@
 /// <reference lib="deno.ns" />
 import dgram from "node:dgram";
-import { joinRoom, leaveRoom, Player, players, listPlayers } from "./Player.ts";
-import { createRoom, getRoomByCode, getRoomList, sendMessageToRoom } from "./Room.ts";
+import { joinRoom, leaveRoom, listPlayers, Player, players } from "./Player.ts";
+import {
+  createRoom,
+  getRoomByCode,
+  getRoomList,
+  sendMessageToRoom,
+} from "./Room.ts";
 import { randomUUID } from "node:crypto";
 import { sendMessage } from "./misc.ts";
 import { redis } from "./redis.ts";
@@ -12,7 +17,7 @@ const PORT = 36692;
 server.bind(PORT);
 
 // deno-lint-ignore no-explicit-any
-server.on("message", (msg:any, rinfo:any) => {
+server.on("message", (msg: any, rinfo: any) => {
   const data = JSON.parse(msg.toString());
   const player = players.find(
     (player) => player.address === rinfo.address && player.port === rinfo.port,
@@ -53,11 +58,16 @@ server.on("message", (msg:any, rinfo:any) => {
   if (player) {
     switch (data.type) {
       case "newRoom": {
-        const room = createRoom(data.roomName, data.password, data.maxPlayers, data.roomType);
+        const room = createRoom(
+          data.roomName,
+          data.password,
+          data.maxPlayers,
+          data.roomType,
+        );
         if (room) {
           sendMessage(
             "roomCreated",
-            { roomName: data.roomName, roomCode : room.code },
+            { roomName: data.roomName, roomCode: room.code },
             rinfo.address,
             rinfo.port,
           );
@@ -117,12 +127,12 @@ server.on("message", (msg:any, rinfo:any) => {
 
       case "getRoomList":
         sendMessage(
-          "roomList", 
+          "roomList",
           {
-            roomList : getRoomList(),
+            roomList: getRoomList(),
           },
           rinfo.address,
-          rinfo.port
+          rinfo.port,
         );
         break;
 
