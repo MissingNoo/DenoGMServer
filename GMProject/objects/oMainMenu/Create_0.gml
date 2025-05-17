@@ -1,7 +1,7 @@
 
 ui = new window(global.game_uis.main_menu);
 ui.fit_to_gui();
-options = ["create", "join", "settings", "quit"];
+options = ["singleplayer", "create", "join", "settings", "quit"];
 option_data = {};
 selected_size = 50;
 unselected_size = 30;

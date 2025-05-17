@@ -71,6 +71,11 @@ if (async_load[? "type"] == network_type_data) {
 		case "roomList":
 			oJoin.room_list = data.roomList;
 			break;
+		
+		case "login":
+			AirNet.username = data.username;
+			AirNet.loggedin = true;
+			break;
 	    default:
 	        // code here
 	        break;

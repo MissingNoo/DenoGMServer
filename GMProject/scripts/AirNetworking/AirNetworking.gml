@@ -1,7 +1,9 @@
 #macro AirNet global.__airnet
 AirNet = {
     ip : "127.0.0.1",
-    port : 36692
+    port : 36692,
+	loggedin : false,
+	username : undefined
 }
 function connection(_ip, _port, _type) constructor {
 	ip = _ip;

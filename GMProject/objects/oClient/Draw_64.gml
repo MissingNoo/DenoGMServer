@@ -1,7 +1,7 @@
 if (instance_exists(oUIElement)) {
 	exit;
 }
-var dbg = $"UUID: {AirNet.connection.uuid} \nPing: {AirNet.connection.ping} \nRoom: {AirNet.connection.current_room} \nPlayers: {array_length(AirNet.players_in_room)}";
+var dbg = $"UUID: {AirNet.connection.uuid} \nUsername: {AirNet.username ?? "Logged out"} \nPing: {AirNet.connection.ping} \nRoom: {AirNet.connection.current_room} \nPlayers: {array_length(AirNet.players_in_room)}";
 infosurf = surface_recreate(infosurf, string_width(dbg) + 5, string_height(dbg) + 7);
 surface_set_target(infosurf);
 draw_set_color(c_black);

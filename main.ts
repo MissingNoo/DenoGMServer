@@ -11,8 +11,7 @@ import {
 import { randomUUID } from "node:crypto";
 import { sendMessage } from "./misc.ts";
 import { redis } from "./redis.ts";
-import { test } from "./mongo.ts";
-console.log(await test());
+import { PlayerLogin } from "./mongo.ts";
 export const server = dgram.createSocket("udp4");
 redis.set("PlayerList", listPlayers().toString());
 const PORT = 36692;
@@ -60,6 +59,10 @@ server.on("message", (msg: any, rinfo: any) => {
   // If the player is already connected, handle the message
   if (player) {
     switch (data.type) {
+      case "login": {
+        PlayerLogin(player, data.username, data.passwordhash);
+        break;
+      }
       case "newRoom": {
         const room = createRoom(
           data.roomName,

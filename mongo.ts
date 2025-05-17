@@ -1,5 +1,5 @@
 import { MongoClient } from "npm:mongodb";
-import { findPlayerByUUID, players } from "./Player.ts";
+import { findPlayerByUUID, Player, players } from "./Player.ts";
 import { sendMessage } from "./misc.ts";
 const mongo = new MongoClient(
   Deno.env.get("mongo") ?? "mongodb://127.0.0.1:27017",
@@ -23,18 +23,18 @@ interface PlayerSchema {
 const playerscol = db.collection<PlayerSchema>("Players");
 
 export async function PlayerLogin(
-  uuid: string,
+  player : Player,
   username: string,
   passwordhash: string,
 ) {
+  if (player.loggedIn) { return; }
   await playerscol.findOne({ username }).then((res) => {
+    console.log(passwordhash);
     if (res?.password == passwordhash) {
-      const player = findPlayerByUUID(uuid);
-      if (player) {
-        player.loggedIn = true;
-        sendMessage("login", { username }, player.address, player.port);
-        console.log(`[Mongo] ${username} logged in!`);
-      }
+      player.loggedIn = true;
+      player.name = username;
+      sendMessage("login", { username }, player.address, player.port);
+      console.log(`[Mongo] Player ${username} logged in!`);
     }
   });
 }
