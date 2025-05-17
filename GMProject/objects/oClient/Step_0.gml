@@ -9,8 +9,8 @@ if (keyboard_check_pressed(vk_f1)) {
     dbglog = !dbglog;
 	show_debug_log(dbglog);
 }
-if (keyboard_check_pressed(vk_f2)) {
-	new packet("joinRoom").write("roomName", lastroom).send();
+if (keyboard_check_pressed(vk_f3)) {
+	offset.lerp_to(offset.get_value() > 0 ? -1000 : 10)
 }
 if (keyboard_check_pressed(ord("R"))) {
 	AirNet.connection.reconnect();

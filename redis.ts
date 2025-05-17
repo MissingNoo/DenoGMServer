@@ -1,8 +1,7 @@
-import config from "./config.json" with { type: "json" };
 import { createClient } from "redis";
 // make a connection to the local instance of redis
 export const redis = createClient({
-  url: config.Redis,
+  url: Deno.env.get("redis") ?? "redis://localhost:6379",
 });
 try {
   await redis.connect();

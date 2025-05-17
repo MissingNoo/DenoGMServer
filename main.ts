@@ -1,4 +1,5 @@
 /// <reference lib="deno.ns" />
+import "jsr:@std/dotenv/load";
 import dgram from "node:dgram";
 import { joinRoom, leaveRoom, listPlayers, Player, players } from "./Player.ts";
 import {

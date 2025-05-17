@@ -1,12 +1,18 @@
 {
   "version": "5",
   "specifiers": {
+    "jsr:@std/dotenv@*": "0.225.4",
     "npm:@types/node@*": "22.12.0",
     "npm:dgram@^1.0.1": "1.0.1",
     "npm:json@11": "11.0.0",
     "npm:mongodb@^6.16.0": "6.16.0",
     "npm:node-redis@~0.1.7": "0.1.7",
     "npm:redis@^5.0.1": "5.0.1_@redis+client@5.0.1"
+  },
+  "jsr": {
+    "@std/dotenv@0.225.4": {
+      "integrity": "2a672c2b192abe535dcfea1ae89f219ee3979af6aad7d185cb19206ee9bc5caf"
+    }
   },
   "npm": {
     "@mongodb-js/saslprep@1.2.2": {

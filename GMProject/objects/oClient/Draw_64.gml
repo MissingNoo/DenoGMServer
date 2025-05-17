@@ -1,18 +1,18 @@
 if (instance_exists(oUIElement)) {
 	exit;
 }
-var p = [];
-for (var i = 0; i < array_length(AirNet.players_in_room); ++i) {
-    array_push(p, AirNet.players_in_room[i].uuid);
-}
-var dbg = $"UUID: {AirNet.connection.uuid} \nPing: {AirNet.connection.ping} \nRoom: {AirNet.connection.current_room} \nPlayers: {p}";
+var dbg = $"UUID: {AirNet.connection.uuid} \nPing: {AirNet.connection.ping} \nRoom: {AirNet.connection.current_room} \nPlayers: {array_length(AirNet.players_in_room)}";
+infosurf = surface_recreate(infosurf, string_width(dbg) + 5, string_height(dbg) + 7);
+surface_set_target(infosurf);
 draw_set_color(c_black);
 draw_set_alpha(0.75);
-draw_rectangle(x, y, x + string_width(dbg) + 5, y + string_height(dbg) + 5, false);
+draw_rectangle(0, 0, surface_get_width(infosurf), surface_get_height(infosurf), false);
 draw_set_color(c_white);
 draw_set_alpha(1);
-draw_text(x + 5, y + 5, dbg);
-draw_rectangle(x, y, x + string_width(dbg) + 5, y + string_height(dbg) + 10, true);
+draw_text(5, 5, dbg);
+draw_rectangle(0, 0, surface_get_width(infosurf) - 2, surface_get_height(infosurf) - 2, true);
+surface_reset_target();
+draw_surface(infosurf, offset.get_value(), 10);
 if (!is_undefined(room_code)) {
 	scribble($"[fa_bottom][fa_center]Room Code: {room_code}").draw(gui_x_percent(50), gui_y_percent(98));
 }

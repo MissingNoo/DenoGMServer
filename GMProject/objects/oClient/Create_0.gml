@@ -1,6 +1,7 @@
 scribble_font_set_default("Font3");
-x = 10;
-y = 10;
+offset = new lerper(-1000);
+offset.lerp_to(10);
+infosurf = undefined;
 count = 0;
 lastroom = "test";
 AirNet[$ "connection"] ??= new connection(AirNet.ip, AirNet.port, network_socket_udp);

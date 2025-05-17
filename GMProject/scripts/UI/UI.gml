@@ -278,6 +278,15 @@ global.game_uis.rooms = {
                       },
                       "height":25.0,
                       "name":"join_button"
+                    },
+                    {
+                      "padding":10.0,
+                      "width":32.0,
+                      "marginLeft" : 5.0,
+                      "data":{
+                      },
+                      "height": 25.0,
+                      "name":"reload_button"
                     }
                   ],
                   "marginTop":14.0,
@@ -307,35 +316,6 @@ global.game_uis.rooms = {
                       "flex":1.0,
                       "name":"room_panel",
                       "nodes":[
-                        {
-                          "marginRight":12.0,
-                          "name":"panel_86484",
-                          "nodes":[
-                            {
-                              "flex":1.0,
-                              "name":"spacer",
-                              "padding":10.0,
-                              "width":60.0,
-                              "data":{
-                              },
-                              "flexDirection":"row"
-                            },
-                            {
-                              "padding":10.0,
-                              "width":32.0,
-                              "data":{
-                              },
-                              "height":32.0,
-                              "name":"reload_button"
-                            }
-                          ],
-                          "padding":10.0,
-                          "data":{
-                            
-                          },
-                          "height":52.0,
-                          "flexDirection":"row"
-                        },
                         {
                           "flex":1.0,
                           "padding":10.0,

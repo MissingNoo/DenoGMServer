@@ -1,6 +1,7 @@
 import { MongoClient } from "npm:mongodb";
-import config from "./config.json" with { type: "json" };
-export const mongo = new MongoClient(config.Mongo);
+export const mongo = new MongoClient(
+  Deno.env.get("mongo") ?? "mongodb://127.0.0.1:27017",
+);
 try {
   await mongo.connect();
   console.log("[Mongo] Connected!");

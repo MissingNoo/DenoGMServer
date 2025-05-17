@@ -262,45 +262,23 @@ function button(_text) constructor {
     original_area = [0, 0, 0, 0];
     area = [0, 0, 0, 0];
     selected_area = [0, 0, 0, 0];
+    pos = {
+        left : 0,
+        top : 0,
+        width : 0,
+        height : 0
+    }
     on_area = false;
     keyboard_selected = false;
     enabled = true;
     gui = true;
-	sprite_back = sButton;
-	sprite = sButton;
+	sprite_back = AirLibButtonBG;
     held = false;
     func = function(){};
 	on_area_func = function(){};
-    static style_default = function() {
-        if (sprite_back != undefined) {
-		    draw_sprite_stretched(sprite_back, held, area[0], area[1], area[2] - area[0], area[3] - area[1]);
-		}
-    }
-    
-    static style_flat = function() {
-        draw_set_color(global.game_uis.button_bg);
-        draw_rectangle(area[0], area[1], area[2], area[3], false);
-        draw_set_color(c_white);
-    }
-    
-    static style_rounded = function() {
-        draw_set_color(global.game_uis.button_bg);
-		draw_roundrect_ext(area[0], area[1], area[2], area[3], global.game_uis.roundx, global.game_uis.roundy, false);
-		draw_set_color(c_white);
-    }
     
     static style_draw = function() {
-        switch (style) {
-        	case AirLibBtnStyle.Default:
-                style_default();
-                break;
-        	case AirLibBtnStyle.Flat:
-                style_flat();
-                break;
-        	case AirLibBtnStyle.Rounded:
-                style_rounded();
-                break;
-        }
+        draw_bg_fg(global.game_uis.button_bg, pos);
     }
     
 	static set_sprite = function(spr) {
@@ -330,6 +308,12 @@ function button(_text) constructor {
         area = [x, y, xx, yy];
         selected_area = area;
         original_area = area;
+        pos = {
+            left : x,
+            top : y,
+            width : xx - x,
+            height : yy - y
+        }
         return self;
     }
     
@@ -337,6 +321,12 @@ function button(_text) constructor {
         area = _area;
         selected_area = area;
         original_area = area;
+        pos = {
+            left : area[0],
+            top : area[1],
+            width : area[2] - area[0],
+            height : area[3] - area[1]
+        }
         return self;
     }
     
@@ -722,9 +712,33 @@ function seconds_to_frames(seconds) {
 
 function create_view_from_instance(inst) {
 	for (var names = struct_get_names(inst), i = 0; i < array_length(names); ++i) {
-    if (is_real(inst[$ names[i]])) {
-		inst[$ $"ref_{names[i]}"] = ref_create(inst, names[i]);
-	    dbg_slider(inst[$ $"ref_{names[i]}"], -100, 100, names[i]);
-	}
+        if (is_real(inst[$ names[i]])) {
+            inst[$ $"ref_{names[i]}"] = ref_create(inst, names[i]);
+            dbg_slider(inst[$ $"ref_{names[i]}"], -100, 100, names[i]);
+        }
+    }
 }
+
+function lerper(_value) constructor {
+    value = _value;
+    goal = _value;
+    amount = 0.1;
+    
+    static get_value = function() {
+        return value;
+    }
+
+    static set_amount = function(_amnt) {
+        amount = _amnt;
+    }
+
+    static lerp_to = function(_goal) {
+        goal = _goal;
+    }
+
+    static tick = function() {
+        value = lerp(value, goal, amount);
+    }
+
+    array_push(AirLib.lerpers, self);
 }
