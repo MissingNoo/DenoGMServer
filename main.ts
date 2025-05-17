@@ -11,7 +11,8 @@ import {
 import { randomUUID } from "node:crypto";
 import { sendMessage } from "./misc.ts";
 import { redis } from "./redis.ts";
-import { mongo } from "./mongo.ts";
+import { test } from "./mongo.ts";
+console.log(await test());
 export const server = dgram.createSocket("udp4");
 redis.set("PlayerList", listPlayers().toString());
 const PORT = 36692;
@@ -49,6 +50,7 @@ server.on("message", (msg: any, rinfo: any) => {
       port: rinfo.port,
       x: 0,
       y: 0,
+      loggedIn: false,
     };
     players.push(p);
     redis.set("PlayerList", listPlayers().toString());

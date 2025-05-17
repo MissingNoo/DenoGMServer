@@ -9,6 +9,7 @@ export type Player = {
   room: string;
   x: number;
   y: number;
+  loggedIn: boolean;
 };
 
 export const players: Player[] = [];
@@ -89,4 +90,10 @@ export function listPlayers(): string[] {
     }
   });
   return parr;
+}
+
+export function findPlayerByUUID(
+  uuid: string,
+): Player | undefined {
+  return players.find((player) => player.uuid === uuid);
 }
