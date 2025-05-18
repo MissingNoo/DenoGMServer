@@ -1,7 +1,6 @@
-import { MongoClient, Timestamp } from "npm:mongodb";
-import { findPlayerByUUID, Player, players } from "./Player.ts";
+import { MongoClient } from "npm:mongodb";
+import { Player } from "./Player.ts";
 import { sendMessage } from "./misc.ts";
-import { time } from "node:console";
 const mongo = new MongoClient(
   Deno.env.get("mongo") ?? "mongodb://127.0.0.1:27017",
 );
