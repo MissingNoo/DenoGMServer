@@ -116,6 +116,14 @@ function window(struct, _generate = false) constructor {
         return self;
     }
 	
+	static center = function() {
+        ostruct.top = gui_y_percent(50) - (ostruct.height / 2);
+        ostruct.left = gui_x_percent(50) - (ostruct.width / 2);
+        root = flexpanel_create_node(ostruct);
+        recalculate();
+        return self;
+    }
+	
 	static fit_to_dimension = function(w, h) {
         ostruct.top = 0;
         ostruct.left = 0;

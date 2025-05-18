@@ -173,6 +173,7 @@ text_input.set_function(method(self, function() {
 		.write("player", AirNet.username)
 		.write("message", text)
 		.send();
+		text_input.text = "";
 	}
 }));
 chat = [];

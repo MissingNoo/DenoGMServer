@@ -1,7 +1,7 @@
 /// <reference lib="deno.ns" />
 import "jsr:@std/dotenv/load";
 import dgram from "node:dgram";
-import { joinRoom, leaveRoom, listPlayers, Player, players } from "./Player.ts";
+import { findPlayerByName, joinRoom, leaveRoom, listPlayers, Player, players } from "./Player.ts";
 import {
   createRoom,
   getRoomByCode,
@@ -150,7 +150,18 @@ server.on("message", (msg: any, rinfo: any) => {
         sendMessageToRoom(player.room, "chatMessage", {player : data.player, message: data.message}, player, true);
         break;
       }
+
+      case "addFriend": {
+        const friend = findPlayerByName(data.player);
+        if (friend) {
+          sendMessage("addFriend", {from : player.name}, friend.address, friend.port);
+          console.log(`${player.name} sent a friend request to ${friend.name}`);
+        }
+        break;
+      }
+
       default:
+        console.log(`[Main] unhandled ${data.type}`);
         break;
     }
   }

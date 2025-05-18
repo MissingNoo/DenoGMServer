@@ -142,9 +142,8 @@ uistr = {
     }
   ]
 }
-uistr.left = gui_x_percent(50) - (uistr.width / 2);
-uistr.top = gui_y_percent(50) - (uistr.height / 2);
 ui = new window(uistr);
+ui.center();
 tagsdrop = new listbox();
 addbtn = new button("Add");
 addbtn.set_function(method(self, function() {

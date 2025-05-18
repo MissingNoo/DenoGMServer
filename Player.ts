@@ -97,3 +97,9 @@ export function findPlayerByUUID(
 ): Player | undefined {
   return players.find((player) => player.uuid === uuid);
 }
+
+export function findPlayerByName(
+  username: string,
+): Player | undefined {
+  return players.find((player) => player.name === username);
+}

@@ -87,6 +87,11 @@ if (async_load[? "type"] == network_type_data) {
 				message : data.message
 			});
 			break;
+		
+		case "addFriend":
+			instance_create_depth(0, 0, -5000, oFriendRequest, { player : data.from });
+			break;
+		
 	    default:
 	        // code here
 	        break;

@@ -74,3 +74,18 @@ function packet(type) constructor {
 		buffer_delete(buffer);
 	}
 }
+
+function player_context_menu(name) {
+	if (name == AirNet.username) {
+		return;
+	}
+	AirNet.search = name;
+	var ctn = new context_menu(name);
+	var fbutton = new button("Add friend"); 
+	fbutton.set_function(method(self, function() {
+		new packet("addFriend")
+		.write("player", AirNet.search)
+		.send();
+	}));
+	ctn.add_button(fbutton);
+}
