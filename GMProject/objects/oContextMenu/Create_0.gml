@@ -1,3 +1,4 @@
+
 uistr = {
   "nodes":[
     {
@@ -34,6 +35,12 @@ uistr = {
     ]
   },
   "height":300.0
+}
+while (top + height > display_get_gui_height()) {
+	top--;
+}
+while (left + width > display_get_gui_width()) {
+	left--;
 }
 uistr.left = left;
 uistr.top = top;

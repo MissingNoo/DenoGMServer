@@ -19,8 +19,8 @@
   ],
   "name":"rUIEditor",
   "parent":{
-    "name":"AirLib",
-    "path":"folders/AirLib.yy",
+    "name":"UIEditor",
+    "path":"folders/AirLib/UIEditor.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

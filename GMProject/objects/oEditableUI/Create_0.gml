@@ -144,7 +144,7 @@ clear_template = {
 };
 //template = global.game_uis.rooms;
 //template = grid_template;
-template = clear_template;
+template = grid_template;
 ui = new window(template, true);
 ui.edit_mode();
 

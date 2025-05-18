@@ -21,6 +21,7 @@ if (async_load[? "type"] == network_type_data) {
 			AirNet.connection.current_room = data.roomName;
 			instance_destroy(oJoin);
 			instance_destroy(oCreate);
+			instance_create_depth(0, 0, -5000, oChat);
 			break;
 			
 		case "playersInRoom":
@@ -78,6 +79,13 @@ if (async_load[? "type"] == network_type_data) {
 			AirNet.username = data.username;
 			AirNet.loggedin = true;
 			instance_destroy(oLogin);
+			break;
+		
+		case "chatMessage":
+			array_push(oChat.chat, {
+				player : data.player,
+				message : data.message
+			});
 			break;
 	    default:
 	        // code here

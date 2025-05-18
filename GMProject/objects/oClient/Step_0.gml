@@ -5,9 +5,6 @@ if (room != rUIEditor) {
 if (keyboard_check_pressed(ord("Z"))) {
 	debug_rooms();
 }
-if (keyboard_check_pressed(vk_f2)) {
-    
-}
 if (keyboard_check_pressed(vk_f1)) {
     dbglog = !dbglog;
 	show_debug_log(dbglog);
@@ -15,24 +12,19 @@ if (keyboard_check_pressed(vk_f1)) {
 if (keyboard_check_pressed(vk_f3)) {
 	offset.lerp_to(offset.get_value() > 0 ? -1000 : 10)
 }
-if (keyboard_check_pressed(ord("R"))) {
+if (keyboard_check(vk_shift) and keyboard_check_pressed(ord("R"))) {
 	AirNet.connection.reconnect();
 	alarm[0] = 120;
 	count = 0;
 }
-//if (keyboard_check_pressed(vk_f2)) {
-//    var json = {
-//		type : "leaveRoom"
-//	}
-//	new msg().write(json_stringify(json)).send();
-//}
+
 if (mx != mouse_x or my != mouse_y) {
     mx = mouse_x;
 	my = mouse_y;
 	with (oOtherPlayer) {
 	    if (uuid == AirNet.connection.uuid) {
-		    player.x = mouse_x;
-		    player.y = mouse_y;
+		    //player.x = mouse_x;
+		    //player.y = mouse_y;
 		}
 	}
 	if (AirNet.connection.current_room != "") {

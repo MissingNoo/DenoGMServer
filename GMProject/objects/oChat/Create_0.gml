@@ -1,2 +1,180 @@
-/// @description Insert description here
-// You can write your code in this editor
+ui = new window({
+  "name":"main_panel",
+  "nodes":[
+    {
+      "flex":1.0,
+      "name":"top_panel_grid",
+      "nodes":[
+        {
+          "padding":0.0,
+          "width":60.0,
+          "flex":1.0,
+          "data":{
+          },
+          "name":"grid_panel1"
+        },
+        {
+          "flex":1.0,
+          "name":"grid_panel2",
+          "margin":0.0,
+          "padding":0.0,
+          "width":60.0,
+          "data":{
+          }
+        },
+        {
+          "padding":0.0,
+          "width":60.0,
+          "flex":1.0,
+          "data":{
+          },
+          "name":"grid_panel3"
+        }
+      ],
+      "left":0.0,
+      "padding":0.0,
+      "top":0.0,
+      "data":{
+      },
+      "height":300.0,
+      "flexDirection":"row"
+    },
+    {
+      "flex":1.0,
+      "name":"middle_panel_grid",
+      "nodes":[
+        {
+          "padding":0.0,
+          "width":60.0,
+          "flex":1.0,
+          "data":{
+          },
+          "name":"grid_panel4"
+        },
+        {
+          "flex":1.0,
+          "name":"grid_panel5",
+          "margin":0.0,
+          "padding":0.0,
+          "width":60.0,
+          "data":{
+          },
+          "border":0.0
+        },
+        {
+          "flex":1.0,
+          "name":"grid_panel6",
+          "flexBasis":0.0,
+          "padding":0.0,
+          "width":60.0,
+          "data":{
+          }
+        }
+      ],
+      "left":0.0,
+      "padding":0.0,
+      "top":0.0,
+      "data":{
+      },
+      "height":300.0,
+      "flexDirection":"row"
+    },
+    {
+      "flex":1.0,
+      "name":"bottom_panel_grid",
+      "nodes":[
+        {
+          "flex":1.0,
+          "name":"grid_panel7",
+          "margin":0.0,
+          "nodes":[
+            {
+              "flex":1.0,
+              "name":"chat_panel",
+              "margin":10.0,
+              "nodes":[
+                {
+                  "padding":10.0,
+                  "data":{
+                    "tags":[
+                      "fg"
+                    ]
+                  },
+                  "flex":1.0,
+                  "height":60.0,
+                  "name":"messages"
+                },
+                {
+                  "padding":10.0,
+                  "data":{
+                    "tags":[
+                      "input"
+                    ]
+                  },
+                  "height":25.0,
+                  "name":"text_input"
+                }
+              ],
+              "padding":10.0,
+              "data":{
+                "tags":[
+                  "bg"
+                ]
+              },
+              "height":60.0,
+              "border":0.0
+            }
+          ],
+          "padding":0.0,
+          "width":60.0,
+          "data":{
+          }
+        },
+        {
+          "padding":0.0,
+          "width":60.0,
+          "flex":1.0,
+          "data":{
+          },
+          "name":"grid_panel8"
+        },
+        {
+          "padding":0.0,
+          "width":60.0,
+          "flex":1.0,
+          "data":{
+          },
+          "name":"grid_panel9"
+        }
+      ],
+      "left":0.0,
+      "padding":0.0,
+      "top":0.0,
+      "data":{
+      },
+      "height":300.0,
+      "flexDirection":"row"
+    }
+  ],
+  "left":275.0,
+  "top":50.0,
+  "width":1280.0,
+  "data":{
+  },
+  "height":720.0
+});
+ui.fit_to_gui();
+text_input = new textbox();
+text_input.backtext = "Chat here";
+text_input.set_function(method(self, function() {
+	var text = text_input.text;
+	if (text != "") {
+		new packet("chatMessage")
+		.write("player", AirNet.username)
+		.write("message", text)
+		.send();
+	}
+}));
+chat = [];
+chatsurf = undefined;
+over = 0;

@@ -9,8 +9,8 @@
   "name":"oTagManager",
   "overriddenProperties":[],
   "parent":{
-    "name":"UIEditor_Obj",
-    "path":"folders/AirLib/UIEditor_Obj.yy",
+    "name":"UIEditor",
+    "path":"folders/AirLib/UIEditor.yy",
   },
   "parentObjectId":null,
   "persistent":false,

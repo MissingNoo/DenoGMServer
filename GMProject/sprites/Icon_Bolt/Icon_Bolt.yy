@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"AirLib",
-    "path":"folders/AirLib.yy",
+    "name":"UIEditor",
+    "path":"folders/AirLib/UIEditor.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

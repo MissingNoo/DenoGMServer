@@ -1,2 +1,3 @@
-/// @description Insert description here
-// You can write your code in this editor
+if (array_length(chat) > 30) {
+	array_shift(chat);
+}

@@ -146,6 +146,10 @@ server.on("message", (msg: any, rinfo: any) => {
         );
         break;
 
+      case "chatMessage": {        
+        sendMessageToRoom(player.room, "chatMessage", {player : data.player, message: data.message}, player, true);
+        break;
+      }
       default:
         break;
     }

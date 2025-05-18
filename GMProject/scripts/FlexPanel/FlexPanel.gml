@@ -61,6 +61,7 @@ function draw_bg_fg(pos = {}, element = {type : undefined, tags : []}) {
             break;
     }
 }
+
 function window(struct, _generate = false) constructor {
     visible = true;
     ostruct = struct;
