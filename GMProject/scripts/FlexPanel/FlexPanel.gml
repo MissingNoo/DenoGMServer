@@ -6,36 +6,48 @@ global.edit_node_owner = undefined;
 function flexpanel_draw_tags(tags, pos) {
     for (var i = 0; i < array_length(tags); i++) {
         var tag = tags[i];
-        switch (tag) {
-            case "bg":
-                draw_bg_fg(global.game_uis.bg, pos);
-                break;
-            case "fg":
-                draw_bg_fg(global.game_uis.fg, pos);
-                break;
-            case "input":
-                draw_bg_fg(global.game_uis.input_bg, pos);
-                break;
-            case "button":
-                draw_bg_fg(global.game_uis.button_bg, pos);
-                break;
-                
-        }
+		draw_bg_fg(pos, {type : undefined, tags});
     }
 }
 
-function draw_bg_fg(bg = global.game_uis.bg, pos = {}) {
+function draw_bg_fg(pos = {}, element = {type : undefined, tags : []}) {
+	var spr = sBlank;
+	var color = c_white;
+	switch (element.type) {
+		case "button":
+			spr = AirLibDefaultButtonSprite;
+			color = global.game_uis.button_bg;
+			break;
+		case "textbox":
+			spr = AirLibDefaultTextBoxSprite;
+			color = global.game_uis.input_bg;
+			break;
+		case "listbox":
+			spr = AirLibDefaultListSprite;
+			color = global.game_uis.list_bg;
+			break;
+		default:
+			if (array_contains(element.tags, "bg")) {
+				spr = AirLibDefaultBGSprite;
+				color = global.game_uis.bg;
+			} 
+			if (array_contains(element.tags, "fg")) {
+				spr = AirLibDefaultFGSprite;
+				color = global.game_uis.fg;
+			}
+			break;
+	} 
     switch (AirLibDefaultStyle) {
         case AirLibBtnStyle.Default:
-            draw_sprite_stretched(AirLibDefaultBGSprite, 0, pos.left, pos.top, pos.left + pos.width, pos.top + pos.height);
+			draw_sprite_stretched(spr, element[$ "on_area"] ?? 0, pos.left, pos.top, pos.width, pos.height);
             break;
         case AirLibBtnStyle.Flat:
-            draw_set_color(bg);
+            draw_set_color(color);
             draw_rectangle(pos.left, pos.top, pos.left + pos.width, pos.top + pos.height, false);
             draw_set_color(c_white);
             break;
         case AirLibBtnStyle.Rounded:
-            draw_set_color(bg);
+            draw_set_color(color);
             draw_roundrect_ext(pos.left, pos.top, pos.left + pos.width, pos.top + pos.height, global.game_uis.roundx, global.game_uis.roundy, false);
             draw_set_color(c_white);
             break;

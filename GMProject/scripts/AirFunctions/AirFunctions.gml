@@ -119,27 +119,26 @@ global.listboxtimer = 60;
 
 function textbox() constructor {
     type = "textbox";
-    style = AirLibDefaultStyle;
 	only_numbers = false;
 	owner = noone;
     text = "";
 	backtext = "";
     selected = false;
     area = [0, 0, 0, 0];
+	pos = {
+        left : 0,
+        top : 0,
+        width : 0,
+        height : 0
+    }
 	can_be_null = false;
-	backspr = sInput;
 	textcolor = "c_black";
 	align = "";
 	strx = undefined;
 	stry = undefined;
     func = function(){};
     
-    static style_default = function() {
-        if (!is_undefined(backspr)) {
-		    draw_sprite_stretched(backspr, 0, area[0], area[1], area[2] - area[0], area[3] - area[1]);
-		}
-    }
-	
+    
 	static set_align = function(h, v) {
 		var newalign = "";
 		switch (h) {
@@ -169,30 +168,8 @@ function textbox() constructor {
 		return self;
 	}
     
-    static style_flat = function() {
-        draw_set_color(global.game_uis.input_bg);
-        draw_rectangle(area[0], area[1], area[2], area[3], false);
-        draw_set_color(c_white);
-    }
-    
-    static style_rounded = function() {
-        draw_set_color(global.game_uis.input_bg);
-		draw_roundrect_ext(area[0], area[1], area[2], area[3], global.game_uis.roundx, global.game_uis.roundy, false);
-		draw_set_color(c_white);
-    }
-    
     static style_draw = function() {
-        switch (style) {
-        	case AirLibBtnStyle.Default:
-                style_default();
-                break;
-        	case AirLibBtnStyle.Flat:
-                style_flat();
-                break;
-        	case AirLibBtnStyle.Rounded:
-                style_rounded();
-                break;
-        }
+        draw_bg_fg(pos, self);
     }
     
     static position = function(x, y, xx, yy) {
@@ -201,6 +178,12 @@ function textbox() constructor {
 			return self;
 		}
         area = newarea;
+		pos = {
+            left : x,
+            top : y,
+            width : xx - x,
+            height : yy - y
+        }
 		recalculate_string_pos();
         return self;
     }
@@ -210,6 +193,12 @@ function textbox() constructor {
 			return self;
 		}
         area = _area;
+		pos = {
+            left : area[0],
+            top : area[1],
+            width : area[2] - area[0],
+            height : area[3] - area[1]
+        }
 		recalculate_string_pos();
         return self;
     }
@@ -320,7 +309,6 @@ enum AirLibBtnStyle {
 }
 function button(_text) constructor {
     type = "button";
-    style = AirLibDefaultStyle;
     use_text = true;
 	owner = noone;
     text = _text;
@@ -337,13 +325,13 @@ function button(_text) constructor {
     keyboard_selected = false;
     enabled = true;
     gui = true;
-	sprite_back = AirLibButtonBG;
+	sprite_back = AirLibDefaultButtonSprite;
     held = false;
     func = function(){};
 	on_area_func = function(){};
     
     static style_draw = function() {
-        draw_bg_fg(global.game_uis.button_bg, pos);
+        draw_bg_fg(pos, self);
     }
     
 	static set_sprite = function(spr) {
@@ -464,52 +452,34 @@ function button(_text) constructor {
 
 function listbox() constructor {
     type = "listbox";
-    style = AirLibDefaultStyle;
 	owner = noone;
     selected = "";
     list = [];
     open = false;
     area = undefined;
+	pos = {
+        left : 0,
+        top : 0,
+        width : 0,
+        height : 0
+    }
     openarea = undefined;
     text = "";
-    backspr = sInput;
-    
-    static style_default = function() {
-        if (!is_undefined(backspr)) {
-        	draw_sprite_stretched(backspr, 0, area[0], area[1], area[2] - area[0], area[3] - area[1]);
-        }
-    }
-    
-    static style_flat = function() {
-        draw_set_color(global.game_uis.list_bg);
-        draw_rectangle(area[0], area[1], area[2], area[3], false);
-        draw_set_color(c_white);
-    }
-    
-    static style_rounded = function() {
-        draw_set_color(global.game_uis.list_bg);
-		draw_roundrect_ext(area[0], area[1], area[2], area[3], global.game_uis.roundx, global.game_uis.roundy, false);
-		draw_set_color(c_white);
-    }
     
     static style_draw = function() {
-        switch (style) {
-        	case AirLibBtnStyle.Default:
-                style_default();
-                break;
-        	case AirLibBtnStyle.Flat:
-                style_flat();
-                break;
-        	case AirLibBtnStyle.Rounded:
-                style_rounded();
-                break;
-        }
+        draw_bg_fg(pos, self);
     }
     
     func_on_select = function(inst){};
     
     static position = function(x, y, xx, yy) {
         area = [x, y, xx, yy];
+		pos = {
+	        left : x,
+	        top : y,
+	        width : xx - x,
+	        height : yy - y
+    	}
         openarea ??= variable_clone(area);
         return self;
     }
