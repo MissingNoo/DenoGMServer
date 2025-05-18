@@ -11,7 +11,7 @@ import {
 import { randomUUID } from "node:crypto";
 import { sendMessage } from "./misc.ts";
 import { redis } from "./redis.ts";
-import { PlayerLogin } from "./mongo.ts";
+import { PlayerLogin, RegisterPlayer } from "./mongo.ts";
 export const server = dgram.createSocket("udp4");
 redis.set("PlayerList", listPlayers().toString());
 const PORT = 36692;
@@ -61,6 +61,10 @@ server.on("message", (msg: any, rinfo: any) => {
     switch (data.type) {
       case "login": {
         PlayerLogin(player, data.username, data.passwordhash);
+        break;
+      }
+      case "register": {
+        RegisterPlayer(player, data.username, data.passwordhash);
         break;
       }
       case "newRoom": {

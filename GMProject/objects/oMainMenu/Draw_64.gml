@@ -1,3 +1,6 @@
+if (instance_exists(oLogin)) {
+	exit;
+}
 global[$ "__mouse_over"] ??= -1;
 ui.foreach(function(name, pos, data) {
 	var _x = pos.left, _y = pos.top, _w = pos.width, _h = pos.height;
@@ -42,11 +45,6 @@ ui.foreach(function(name, pos, data) {
             }
             break;
         default:
-            if (!is_undefined(spr)) {
-                draw_set_alpha(0.5);
-                draw_sprite_stretched(spr, 0, _x, _y, _w, _h);
-                draw_set_alpha(1);
-            }
             break;
     }
 });

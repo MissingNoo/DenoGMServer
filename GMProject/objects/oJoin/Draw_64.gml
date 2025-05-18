@@ -2,10 +2,7 @@
 //draw_sprite_stretched(sJoin, 0, 0, 0, display_get_gui_width(), display_get_gui_height());
 //draw_set_alpha(1);
 ui.foreach(function(name, pos, data) {
-    var spr = data[$ "image"] != undefined ? asset_get_index(data.image) : undefined;
-    spr = (spr != undefined and spr != -1) ? spr : sBlank;
-	var _x = pos.left, _y = pos.top, _w = pos.width, _h = pos.height;
-	var area = [_x, _y, _x + _w, _y + _h];
+	AirUIArea;
     switch (name) {
 		case "join_panel":
             quit_button.position(_x + _w - 20, _y - 20, _x + _w + 20, _y + 20);
@@ -18,7 +15,7 @@ ui.foreach(function(name, pos, data) {
 			scribble($"[c_black][fa_middle]Join game").scale(room_list_title_scale).draw(_x + room_list_title_x, _y + _h / 2);
 			break;
 		case "join_button":
-			code_button.set_position_area(area);
+			code_button.position_area(area);
 			code_button.draw();
 			break;
 		case "code_input":

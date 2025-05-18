@@ -167,6 +167,11 @@ function textbox() constructor {
         area = [x, y, xx, yy];
         return self;
     }
+	
+	static position_area = function(_area) {
+        area = _area;
+        return self;
+    }
     
     static set_function = function(f) {
         func = f;
@@ -317,7 +322,7 @@ function button(_text) constructor {
         return self;
     }
     
-	static set_position_area = function(_area) {
+	static position_area = function(_area) {
         area = _area;
         selected_area = area;
         original_area = area;

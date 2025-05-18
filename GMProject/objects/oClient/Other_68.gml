@@ -7,6 +7,8 @@ if (async_load[? "type"] == network_type_data) {
 	switch (return_type) {
 	    case "uuid":
 	        AirNet.connection.set_uuid(data.uuid);
+			AirNet.username = undefined;
+			AirNet.loggedin = false;
 	        break;
 			
 		case "pong":
@@ -75,6 +77,7 @@ if (async_load[? "type"] == network_type_data) {
 		case "login":
 			AirNet.username = data.username;
 			AirNet.loggedin = true;
+			instance_destroy(oLogin);
 			break;
 	    default:
 	        // code here

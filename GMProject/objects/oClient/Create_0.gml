@@ -8,6 +8,7 @@ AirNet[$ "connection"] ??= new connection(AirNet.ip, AirNet.port, network_socket
 AirNet.connection.connect();
 AirNet.host = false;
 AirNet.players_in_room = [];
+instance_create_depth(x, y, depth + 1, oLogin);
 mx = mouse_x;
 my = mouse_y;
 room_code = undefined;

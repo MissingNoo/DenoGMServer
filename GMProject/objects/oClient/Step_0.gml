@@ -6,10 +6,7 @@ if (keyboard_check_pressed(ord("Z"))) {
 	debug_rooms();
 }
 if (keyboard_check_pressed(vk_f2)) {
-    new packet("login")
-	.write("username", "Air")
-	.write("passwordhash", sha1_string_unicode("123"))
-	.send();
+    
 }
 if (keyboard_check_pressed(vk_f1)) {
     dbglog = !dbglog;

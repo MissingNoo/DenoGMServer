@@ -1,6 +1,7 @@
-import { MongoClient } from "npm:mongodb";
+import { MongoClient, Timestamp } from "npm:mongodb";
 import { findPlayerByUUID, Player, players } from "./Player.ts";
 import { sendMessage } from "./misc.ts";
+import { time } from "node:console";
 const mongo = new MongoClient(
   Deno.env.get("mongo") ?? "mongodb://127.0.0.1:27017",
 );
@@ -29,7 +30,6 @@ export async function PlayerLogin(
 ) {
   if (player.loggedIn) { return; }
   await playerscol.findOne({ username }).then((res) => {
-    console.log(passwordhash);
     if (res?.password == passwordhash) {
       player.loggedIn = true;
       player.name = username;
@@ -37,4 +37,19 @@ export async function PlayerLogin(
       console.log(`[Mongo] Player ${username} logged in!`);
     }
   });
+}
+
+export async function RegisterPlayer(player : Player, username:string, passwordhash:string) {
+  const exists = await playerscol.findOne({ username });
+  if (exists == null) {
+    playerscol.insertOne({
+      username : username,
+      password : passwordhash,
+      lastlogin : "never"
+    });
+    console.log(`[Mongo] Player ${username} registered!`);
+    PlayerLogin(player, username, passwordhash);
+  } else {
+    sendMessage("username_exists", {}, player.address, player.port);
+  }
 }

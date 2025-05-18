@@ -1,4 +1,5 @@
 //feather ignore all
+#macro AirUIArea  var _x = pos.left, _y = pos.top, _w = pos.width, _h = pos.height, area = [_x, _y, _x + _w, _y + _h]
 global.edit_mode = false;
 global.edit_node = undefined;
 global.edit_node_owner = undefined;
