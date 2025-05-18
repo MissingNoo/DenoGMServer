@@ -27,6 +27,14 @@ function draw_bg_fg(pos = {}, element = {type : undefined, tags : []}) {
 			color = global.game_uis.list_bg;
 			break;
 		default:
+			if (array_contains(element.tags, "button")) {
+				spr = AirLibDefaultButtonSprite;
+				color = global.game_uis.button_bg;
+			} 
+			if (array_contains(element.tags, "input")) {
+				spr = AirLibDefaultTextBoxSprite;
+				color = global.game_uis.input_bg;
+			} 
 			if (array_contains(element.tags, "bg")) {
 				spr = AirLibDefaultBGSprite;
 				color = global.game_uis.bg;

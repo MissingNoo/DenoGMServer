@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"Script108",
+  "%Name":"AirConfig",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"Script108",
+  "name":"AirConfig",
   "parent":{
     "name":"AirLib",
     "path":"folders/AirLib.yy",
