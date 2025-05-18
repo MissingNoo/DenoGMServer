@@ -269,8 +269,10 @@ ui = new window({
 })
 ui.fit_to_gui();
 username = new textbox();
+username.set_align(fa_center, fa_middle);
 username.backtext = "username";
 password = new textbox();
+password.set_align(fa_center, fa_middle);
 password.backtext = "password";
 login = new button("Login");
 login.set_function(method(self, function() {

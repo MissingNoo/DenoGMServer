@@ -129,6 +129,9 @@ function textbox() constructor {
 	can_be_null = false;
 	backspr = sInput;
 	textcolor = "c_black";
+	align = "";
+	strx = undefined;
+	stry = undefined;
     func = function(){};
     
     static style_default = function() {
@@ -136,6 +139,35 @@ function textbox() constructor {
 		    draw_sprite_stretched(backspr, 0, area[0], area[1], area[2] - area[0], area[3] - area[1]);
 		}
     }
+	
+	static set_align = function(h, v) {
+		var newalign = "";
+		switch (h) {
+			case fa_left:
+				newalign += "[fa_left]";
+				break;
+			case fa_right:
+				newalign += "[fa_right]";
+				break;
+			case fa_center:
+				newalign += "[fa_center]";
+				break;
+		}
+		switch (v) {
+			case fa_top:
+				newalign += "[fa_top]";
+				break;
+			case fa_bottom:
+				newalign += "[fa_bottom]";
+				break;
+			case fa_middle:
+				newalign += "[fa_middle]";
+				break;
+		}
+		align = newalign;
+		recalculate_string_pos();
+		return self;
+	}
     
     static style_flat = function() {
         draw_set_color(global.game_uis.input_bg);
@@ -164,12 +196,21 @@ function textbox() constructor {
     }
     
     static position = function(x, y, xx, yy) {
-        area = [x, y, xx, yy];
+		var newarea = [x, y, xx, yy];
+		if (array_equals(area, newarea)) {
+			return self;
+		}
+        area = newarea;
+		recalculate_string_pos();
         return self;
     }
 	
 	static position_area = function(_area) {
+		if (array_equals(area, _area)) {
+			return self;
+		}
         area = _area;
+		recalculate_string_pos();
         return self;
     }
     
@@ -243,13 +284,32 @@ function textbox() constructor {
 			keyboard_lastkey = vk_nokey;
         }
     }
+	
+	static recalculate_string_pos = function() {
+		strx = area[0];
+		if (string_contains(align, "[fa_center]")) {
+			strx = area[0] + (area[2] - area[0]) / 2;
+		}
+		if (string_contains(align, "[fa_right]")) {
+			strx = area[2];
+		}
+		stry = area[1];
+		if (string_contains(align, "[fa_middle]")) {
+			stry = area[1] + (area[3] - area[1]) / 2;
+		}
+		if (string_contains(align, "[fa_bottom]")) {
+			stry = area[3];
+		}
+	}
     
     static draw = function() {
 		if (area[0] == area[2]) { exit; } 
         style_draw();
         tick(); 
 		var _text = text == "" ? backtext : text;
-        scribble($"[Fnt][{textcolor}] {_text}").scale_to_box(area[2] - area[0] - string_width("X") - 2, area[3] - area[1] - 3, true).draw(area[0], area[1]);
+		var _x = area[0];
+		
+        scribble($"{align}[Fnt][{textcolor}] {_text}").scale_to_box(area[2] - area[0] - string_width("X") - 2, area[3] - area[1] - 3, true).draw(strx, stry);
     }
 }
 global.reset_button = false;
