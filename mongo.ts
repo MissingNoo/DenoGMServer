@@ -23,11 +23,11 @@ interface PlayerSchema {
 const playerscol = db.collection<PlayerSchema>("Players");
 
 export async function PlayerLogin(
-  player : Player,
+  player: Player,
   username: string,
   passwordhash: string,
 ) {
-  if (player.loggedIn) { return; }
+  if (player.loggedIn) return;
   await playerscol.findOne({ username }).then((res) => {
     if (res?.password == passwordhash) {
       player.loggedIn = true;
@@ -38,13 +38,17 @@ export async function PlayerLogin(
   });
 }
 
-export async function RegisterPlayer(player : Player, username:string, passwordhash:string) {
+export async function RegisterPlayer(
+  player: Player,
+  username: string,
+  passwordhash: string,
+) {
   const exists = await playerscol.findOne({ username });
   if (exists == null) {
     playerscol.insertOne({
-      username : username,
-      password : passwordhash,
-      lastlogin : "never"
+      username: username,
+      password: passwordhash,
+      lastlogin: "never",
     });
     console.log(`[Mongo] Player ${username} registered!`);
     PlayerLogin(player, username, passwordhash);

@@ -76,7 +76,8 @@ function packet(type) constructor {
 }
 
 function player_context_menu(name) {
-	if (name == AirNet.username) {
+	var early_return = [AirNet.username, "[[Server]"];
+	if (array_contains(early_return, name)) {
 		return;
 	}
 	AirNet.search = name;

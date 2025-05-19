@@ -31,9 +31,12 @@ if (async_load[? "type"] == network_type_data) {
 				with (oOtherPlayer) {
 					exists = self.player == e;
 				}
-				if (!exists) {
-				//if (!exists and e.uuid != AirNet.connection.uuid) {
-				    instance_create_depth(e.x, e.y, 0, oOtherPlayer, {player : e});
+				if (!exists and e.uuid != AirNet.connection.uuid) {
+					instance_create_depth(e.x, e.y, 0, oOtherPlayer, {player : e});
+					array_push(oChat.chat, {
+						player : "[[Server]",
+						message : $"{e.name} Joined the game!"
+					});
 				}
 			});
 			break;
@@ -51,8 +54,8 @@ if (async_load[? "type"] == network_type_data) {
 			break;
 			
 		case "playerLeft":
-			ouuid = data.uuid;
-			player = array_find_index(AirNet.players_in_room, function(e, i) {
+			var ouuid = data.uuid;
+			var player = array_find_index(AirNet.players_in_room, function(e, i) {
 				return e.uuid == global.search;
 			});
 			if (player != -1) {
@@ -60,6 +63,10 @@ if (async_load[? "type"] == network_type_data) {
 			}
 			with (oOtherPlayer) {
 			    if (uuid == ouuid) {
+					array_push(oChat.chat, {
+						player : "[[Server]",
+						message : $"{self.player.name} Left the game!"
+					})
 				    instance_destroy();
 				}
 			}
