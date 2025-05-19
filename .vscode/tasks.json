@@ -14,6 +14,12 @@
       "type": "shell",
       "command": "~/GameMakerStudio2/runner -game /home/airgeadlamh/git/DenoGMServer/GMProject/builder/output/GameAssetsLinux/assets/game.unx",
       "problemMatcher": []
+    },
+    {
+      "label": "ReRerun Game",
+      "type": "shell",
+      "command": "~/GameMakerStudio2/runner -game /home/airgeadlamh/git/DenoGMServer/GMProject/builder/output/GameAssetsLinux/assets/game.unx",
+      "problemMatcher": []
     }
   ]
 }

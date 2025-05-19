@@ -3,7 +3,8 @@ AirNet = {
     ip : "127.0.0.1",
     port : 36692,
 	loggedin : false,
-	username : undefined
+	username : undefined,
+	friendlist : []
 }
 function connection(_ip, _port, _type) constructor {
 	ip = _ip;
@@ -82,11 +83,14 @@ function player_context_menu(name) {
 	}
 	AirNet.search = name;
 	var ctn = new context_menu(name);
-	var fbutton = new button("Add friend"); 
+	var fbutton = new button("Add friend");
+	fbutton.set_enabled(!array_contains(AirNet.friendlist, AirNet.search));
 	fbutton.set_function(method(self, function() {
-		new packet("addFriend")
-		.write("player", AirNet.search)
-		.send();
+		if (!array_contains(AirNet.friendlist, AirNet.search)) {
+			new packet("addFriend")
+			.write("player", AirNet.search)
+			.send();
+		}
 	}));
 	ctn.add_button(fbutton);
 }

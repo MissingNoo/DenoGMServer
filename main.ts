@@ -21,7 +21,12 @@ import {
 import { randomUUID } from "node:crypto";
 import { sendMessage } from "./misc.ts";
 import { redis } from "./redis.ts";
-import { PlayerLogin, RegisterPlayer } from "./mongo.ts";
+import {
+  addFriend,
+  getFriendList,
+  PlayerLogin,
+  RegisterPlayer,
+} from "./mongo.ts";
 export const server = dgram.createSocket("udp4");
 redis.set("PlayerList", listPlayers().toString());
 const PORT = 36692;
@@ -123,6 +128,7 @@ server.on("message", (msg: any, rinfo: any) => {
           rinfo.address,
           rinfo.port,
         );
+        player.lastping = moment(moment.utc());
         break;
       }
 
@@ -176,6 +182,16 @@ server.on("message", (msg: any, rinfo: any) => {
           );
           console.log(`${player.name} sent a friend request to ${friend.name}`);
         }
+        break;
+      }
+
+      case "acceptFriend": {
+        addFriend(player, data.player);
+        break;
+      }
+
+      case "getFriendList": {
+        getFriendList(player);
         break;
       }
 

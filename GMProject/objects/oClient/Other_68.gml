@@ -86,6 +86,7 @@ if (async_load[? "type"] == network_type_data) {
 			AirNet.username = data.username;
 			AirNet.loggedin = true;
 			instance_destroy(oLogin);
+			new packet("getFriendList").send();
 			break;
 		
 		case "chatMessage":
@@ -99,6 +100,10 @@ if (async_load[? "type"] == network_type_data) {
 			instance_create_depth(0, 0, -5000, oFriendRequest, { player : data.from });
 			break;
 		
+		case "friendlist":
+			AirNet.friendlist = data.friends;
+			break;
+
 	    default:
 	        // code here
 	        break;
