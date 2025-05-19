@@ -1,5 +1,7 @@
+import moment from "moment";
 import { deleteRoom, getRoomByName, rooms, sendMessageToRoom } from "./Room.ts";
 import { sendMessage } from "./misc.ts";
+import { redis } from "./redis.ts";
 
 export type Player = {
   address: string;
@@ -10,6 +12,7 @@ export type Player = {
   x: number;
   y: number;
   loggedIn: boolean;
+  lastping: moment.Moment;
 };
 
 export const players: Player[] = [];
@@ -83,7 +86,7 @@ function playerInRoom(
 }
 
 export function listPlayers(): string[] {
-  let parr: string[] = [];
+  const parr: string[] = [];
   players.forEach((player) => {
     if (player.name != undefined) {
       parr.push(player.name);
@@ -102,4 +105,25 @@ export function findPlayerByName(
   username: string,
 ): Player | undefined {
   return players.find((player) => player.name === username);
+}
+
+export function disconnectAfk() {
+  const now: moment.Moment = moment(moment.utc());
+  players.forEach((element) => {
+    if (now.diff(element.lastping) / 60 / 60 > 30) {
+      console.log(
+        `[Players] ${element.name} last ping was more than 30 seconds ago, disconnecting!`,
+      );
+      leaveRoom(element);
+      disconnectPlayer(element);
+    }
+  });
+}
+
+export function disconnectPlayer(player: Player) {
+  leaveRoom(player);
+  const index = players.indexOf(player);
+  players.splice(index, 1);
+  console.log(`[Players] Player ${player.uuid} disconnected`);
+  redis.set("PlayerList", listPlayers().toString());
 }

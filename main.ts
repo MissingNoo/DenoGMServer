@@ -1,7 +1,17 @@
 /// <reference lib="deno.ns" />
 import "jsr:@std/dotenv/load";
 import dgram from "node:dgram";
-import { findPlayerByName, joinRoom, leaveRoom, listPlayers, Player, players } from "./Player.ts";
+import moment from "moment";
+import {
+  disconnectAfk,
+  disconnectPlayer,
+  findPlayerByName,
+  joinRoom,
+  leaveRoom,
+  listPlayers,
+  Player,
+  players,
+} from "./Player.ts";
 import {
   createRoom,
   getRoomByCode,
@@ -19,6 +29,7 @@ server.bind(PORT);
 
 // deno-lint-ignore no-explicit-any
 server.on("message", (msg: any, rinfo: any) => {
+  disconnectAfk();
   const data = JSON.parse(msg.toString());
   const player = players.find(
     (player) => player.address === rinfo.address && player.port === rinfo.port,
@@ -50,6 +61,7 @@ server.on("message", (msg: any, rinfo: any) => {
       x: 0,
       y: 0,
       loggedIn: false,
+      lastping: moment(moment.now()),
     };
     players.push(p);
     redis.set("PlayerList", listPlayers().toString());
@@ -127,11 +139,7 @@ server.on("message", (msg: any, rinfo: any) => {
       }
 
       case "disconnect": {
-        leaveRoom(player);
-        const index = players.indexOf(player);
-        players.splice(index, 1);
-        console.log(`[Main] Player ${player.uuid} disconnected`);
-        redis.set("PlayerList", listPlayers().toString());
+        disconnectPlayer(player);
         break;
       }
 
@@ -146,15 +154,26 @@ server.on("message", (msg: any, rinfo: any) => {
         );
         break;
 
-      case "chatMessage": {        
-        sendMessageToRoom(player.room, "chatMessage", {player : data.player, message: data.message}, player, true);
+      case "chatMessage": {
+        sendMessageToRoom(
+          player.room,
+          "chatMessage",
+          { player: data.player, message: data.message },
+          player,
+          true,
+        );
         break;
       }
 
       case "addFriend": {
         const friend = findPlayerByName(data.player);
         if (friend) {
-          sendMessage("addFriend", {from : player.name}, friend.address, friend.port);
+          sendMessage(
+            "addFriend",
+            { from: player.name },
+            friend.address,
+            friend.port,
+          );
           console.log(`${player.name} sent a friend request to ${friend.name}`);
         }
         break;
