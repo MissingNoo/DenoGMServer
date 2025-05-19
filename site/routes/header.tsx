@@ -1,6 +1,3 @@
-import OnlineCount from "../islands/online_counter.tsx";
-import { totalPlayers } from "./api/players.ts";
-
 export default function Header() {
   return (
     <div>

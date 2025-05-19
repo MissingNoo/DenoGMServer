@@ -1,8 +1,9 @@
 import { redis } from "./db.ts";
+import { FreshContext } from "$fresh/server.ts";
 
-export function totalPlayers(): number {
+async function totalPlayers() {
   let players: number = -1;
-  redis.get("PlayerList").then((res) => {
+  await redis.get("PlayerList").then((res) => {
     players = res ? res.split(",").length : 0;
   }).catch((err) => {
     console.log(err);
@@ -10,3 +11,12 @@ export function totalPlayers(): number {
   console.log(players);
   return players;
 }
+let players: any = "0";
+
+export const handler = (_req: Request, _ctx: FreshContext): Response => {
+  const body = players;
+  totalPlayers().then((res) => {
+    players = res;
+  });
+  return new Response(body);
+};

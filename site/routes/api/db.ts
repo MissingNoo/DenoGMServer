@@ -1,5 +1,5 @@
-import { createClient } from "npm:redis";
-import { MongoClient } from "npm:mongodb@6.1.0";
+import { createClient } from "redis";
+import { MongoClient } from "npm:mongodb";
 
 export const redis = createClient({
   url: "redis://localhost:6379",

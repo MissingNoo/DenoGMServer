@@ -1,7 +1,16 @@
 import { useSignal } from "@preact/signals";
 import Counter from "../islands/Counter.tsx";
 import Header from "./header.tsx";
-
+import { IS_BROWSER } from "$fresh/runtime.ts";
+import { redis } from "./api/db.ts";
+redis.set("PlayerList", "123,Air,abc");
+const resp = async () => {
+  if (IS_BROWSER) {
+    const resp = await fetch("/api/players");
+    const json = await resp.json();
+    console.log(json);
+  }
+};
 export default function Home() {
   const count = useSignal(3);
   return (
