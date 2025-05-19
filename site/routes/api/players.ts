@@ -8,7 +8,6 @@ async function totalPlayers() {
   }).catch((err) => {
     console.log(err);
   });
-  console.log(players);
   return players;
 }
 let players: any = "0";

@@ -2,35 +2,21 @@ import { useSignal } from "@preact/signals";
 import Counter from "../islands/Counter.tsx";
 import Header from "./header.tsx";
 import { IS_BROWSER } from "$fresh/runtime.ts";
+import OnlineCount from "../islands/online_counter.tsx";
 import { redis } from "./api/db.ts";
-redis.set("PlayerList", "123,Air,abc");
-const resp = async () => {
-  if (IS_BROWSER) {
-    const resp = await fetch("/api/players");
-    const json = await resp.json();
-    console.log(json);
-  }
-};
+redis.set("PlayerList", "123,Air,abc,123123,1123123,124124,123123");
 export default function Home() {
   const count = useSignal(3);
   return (
-    <div class="px-4 py-8 mx-auto bg-[#86efac]">
-      <Header></Header>
-      <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center">
-        <img
-          class="my-6"
-          src="/logo.svg"
-          width="128"
-          height="128"
-          alt="the Fresh logo: a sliced lemon dripping with juice"
-        />
-        <h1 class="text-4xl font-bold">Welcome to Fresh</h1>
-        <p class="my-4">
-          Try updating this message in the
-          <code class="mx-2">./routes/index.tsx</code> file, and refresh.
-        </p>
-        <Counter count={count} />
+    <div class="grid min-h-screen grid-cols-[1fr_2.5rem_auto_auto_1fr] grid-rows-[1fr_1px_auto_1px_1fr] bg-white">
+      <div class="col-start-3 row-start-1 flex max-w-lg flex-col bg-gray-100 p-2 dark:bg-white/10">
+        <Header></Header>
       </div>
+      <div class="col-start-4 row-start-1 flex max-w-lg flex-col bg-gray-100 p-2 dark:bg-white/10">
+        <OnlineCount></OnlineCount>
+      </div>
+      
+      
     </div>
   );
 }
