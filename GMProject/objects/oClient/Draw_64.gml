@@ -12,7 +12,7 @@ draw_set_alpha(1);
 draw_text(5, 5, dbg);
 draw_rectangle(0, 0, surface_get_width(infosurf) - 2, surface_get_height(infosurf) - 2, true);
 surface_reset_target();
-draw_surface(infosurf, offset.get_value(), 10);
+draw_surface(infosurf, gui_x_percent(100) - surface_get_width(infosurf) - 10, gui_y_percent(100) - offset);
 if (!is_undefined(room_code)) {
 	scribble($"[fa_bottom][fa_center]Room Code: {room_code}").draw(gui_x_percent(50), gui_y_percent(98));
 }

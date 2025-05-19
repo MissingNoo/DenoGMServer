@@ -10,7 +10,8 @@ if (keyboard_check_pressed(vk_f1)) {
 	show_debug_log(dbglog);
 }
 if (keyboard_check_pressed(vk_f3)) {
-	offset.lerp_to(offset.get_value() > 0 ? -1000 : 10)
+	//offset.lerp_to(offset.get_value() > 0 ? -1000 : 10)
+	tween(self, "offset", offset < 0 ? surface_get_height(infosurf) + 10 : -10);
 }
 if (keyboard_check(vk_shift) and keyboard_check_pressed(ord("R"))) {
 	AirNet.connection.reconnect();

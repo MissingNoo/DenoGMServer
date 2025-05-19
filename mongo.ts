@@ -29,6 +29,11 @@ export async function PlayerLogin(
   passwordhash: string,
 ) {
   if (player.loggedIn) return;
+  if (findPlayerByName(username)) {
+    sendMessage("alreadyConnected", {}, player.address, player.port);
+    console.log(`[Mongo] Player ${username} already connected!`);
+    return;
+  }
   await playerscol.findOne({ username }).then((res) => {
     if (res?.password == passwordhash) {
       player.loggedIn = true;

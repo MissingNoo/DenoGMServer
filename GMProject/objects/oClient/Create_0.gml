@@ -1,6 +1,7 @@
 scribble_font_set_default("Font3");
-offset = new lerper(-1000);
-offset.lerp_to(10);
+offset = -1000;//new lerper(-1000);
+tween(self, "offset", -10);
+//offset.lerp_to(10);
 infosurf = undefined;
 count = 0;
 lastroom = "test";
