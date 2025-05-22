@@ -36,13 +36,17 @@ ui.foreach(function(name, pos, data) {
                     });
                     opt.height = lerp(opt.height, selected_size, 0.1);
                 }
-                if (!mouse_in_area_gui([_x, _y, _x + _w, _y + _h])) {
+                if (!mouse_in_area_gui([_x, _y, _x + _w, maxyy])) {
                     struct_foreach(option_data, function (n, e) {
                         e.height = lerp(e.height, min_size, 0.05);
                     });
                 }
+				if (yy + opt.height > maxyy) {
+					maxyy = yy + opt.height;
+				}
 				opt.btn.draw();
             }
+			draw_rectangle(_x, _y, _x + _w, maxyy, true);
             break;
         default:
             break;

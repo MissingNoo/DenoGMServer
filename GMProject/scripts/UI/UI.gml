@@ -1,15 +1,5 @@
 #macro Lorem "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas efficitur neque vitae dolor commodo, vitae pretium massa tincidunt. Cras non mattis elit. Quisque finibus ligula turpis, et placerat erat efficitur eget. Quisque ex justo, scelerisque ac dignissim nec, malesuada vel quam. Etiam ut felis arcu. Nulla facilisi. Etiam euismod viverra lectus, quis gravida eros iaculis id. Nullam gravida, augue id efficitur ullamcorper, nulla ligula commodo metus, in ultrices erat ante a velit. In vehicula mollis justo, et luctus dolor. Nullam nec efficitur nibh. Maecenas sagittis sem vitae mi rutrum, ac mattis eros molestie. Etiam elit magna, pharetra eu accumsan non, cursus in turpis. Pellentesque in fermentum mi, nec fermentum elit."
-
-global.game_uis = {
-    bg : #FFEED5,
-    fg : #D5AA73,
-    input_bg : #BC9460,
-    button_bg : #5A755A,
-    list_bg : #5A755A,
-    roundx : 10,
-    roundy : 15
-};
-
+global.game_uis = {};
 global.game_uis.main_menu = {
   "name":"main_panel",
   "left":275.0,

@@ -6,3 +6,10 @@
 #macro AirLibDefaultFGSprite sAirFG
 #macro AirLibDefaultButtonSprite sButton
 #macro AirLibTags ["bg", "fg", "button", "input"]
+#macro AirLibBG #FFEED5
+#macro AirLibFG #D5AA73
+#macro AirLibInputBG #BC9460
+#macro AirLibButtonBG #5A755A
+#macro AirLibListBG #5A755A
+#macro AirLibRoundX 10
+#macro AirLibRoundY 15

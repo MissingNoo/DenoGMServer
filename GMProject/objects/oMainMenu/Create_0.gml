@@ -29,5 +29,7 @@ option_data[$ "quit"].btn.set_function(function() {
 	game_end();
 });
 
+maxyy = 0;
+
 dbg = dbg_view("Main Menu", false, 10, 10);
 create_view_from_instance(self);

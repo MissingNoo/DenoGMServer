@@ -14,13 +14,13 @@ if (draw_back) {
             draw_sprite_stretched(sButton, 1, x, y, width, height);
             break;
         case AirLibBtnStyle.Flat:
-            draw_set_color(global.game_uis.bg);
+            draw_set_color(AirLibBG);
             draw_rectangle(x, y, x + width, y + height, false);
             draw_set_color(c_white);
             break;
         case AirLibBtnStyle.Rounded:
-            draw_set_color(global.game_uis.bg);
-		    draw_roundrect_ext(x, y, x + width, y + height, global.game_uis.roundx, global.game_uis.roundy, false);
+            draw_set_color(AirLibBG);
+		    draw_roundrect_ext(x, y, x + width, y + height, AirLibRoundX, AirLibRoundY, false);
 		    draw_set_color(c_white);
             break;
     } 
@@ -35,13 +35,13 @@ if (image != -1)
                 draw_sprite_stretched(sButton, 1, x, y, width, height);
                 break;
             case AirLibBtnStyle.Flat:
-                draw_set_color(global.game_uis.bg);
+                draw_set_color(AirLibBG);
                 draw_rectangle(x, y, x + width, y + height, false);
                 draw_set_color(c_white);
                 break;
             case AirLibBtnStyle.Rounded:
-                draw_set_color(global.game_uis.bg);
-    		    draw_roundrect_ext(x, y, x + width, y + height, global.game_uis.roundx, global.game_uis.roundy, false);
+                draw_set_color(AirLibBG);
+    		    draw_roundrect_ext(x, y, x + width, y + height, AirLibRoundX, AirLibRoundY, false);
     		    draw_set_color(c_white);
                 break;
         }

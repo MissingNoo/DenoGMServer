@@ -17,32 +17,32 @@ function draw_bg_fg(pos = {}, element = {type: undefined, tags: []}) {
 	switch (element.type) {
 		case "button":
 			spr = AirLibDefaultButtonSprite;
-			color = global.game_uis.button_bg;
+			color = AirLibButtonBG;
 			break;
 		case "textbox":
 			spr = AirLibDefaultTextBoxSprite;
-			color = global.game_uis.input_bg;
+			color = AirLibInputBG;
 			break;
 		case "listbox":
 			spr = AirLibDefaultListSprite;
-			color = global.game_uis.list_bg;
+			color = AirLibListBG;
 			break;
 		default:
 			if (array_contains(element.tags, "button")) {
 				spr = AirLibDefaultButtonSprite;
-				color = global.game_uis.button_bg;
+				color = AirLibButtonBG;
 			}
 			if (array_contains(element.tags, "input")) {
 				spr = AirLibDefaultTextBoxSprite;
-				color = global.game_uis.input_bg;
+				color = AirLibInputBG;
 			}
 			if (array_contains(element.tags, "bg")) {
 				spr = AirLibDefaultBGSprite;
-				color = global.game_uis.bg;
+				color = AirLibBG;
 			}
 			if (array_contains(element.tags, "fg")) {
 				spr = AirLibDefaultFGSprite;
-				color = global.game_uis.fg;
+				color = AirLibFG;
 			}
 			break;
 	}
@@ -75,8 +75,8 @@ function draw_bg_fg(pos = {}, element = {type: undefined, tags: []}) {
 				pos.top,
 				pos.left + pos.width,
 				pos.top + pos.height,
-				global.game_uis.roundx,
-				global.game_uis.roundy,
+				AirLibRoundX,
+				AirLibRoundY,
 				false
 			);
 			draw_set_color(c_white);

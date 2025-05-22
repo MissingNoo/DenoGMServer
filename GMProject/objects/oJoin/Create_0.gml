@@ -1,7 +1,7 @@
 ui = new window(global.game_uis.rooms);
 ui.fit_to_gui();
-roundness_x = global.game_uis.roundx;
-roundness_y = global.game_uis.roundy; 
+roundness_x = AirLibRoundX;
+roundness_y = AirLibRoundY; 
 room_list_offset = 53;
 room_list_h = 50;
 room_list_title_x = 15;
@@ -28,8 +28,8 @@ reload_button = new button("R");
 reload_button.set_function(function() {
     new packet("getRoomList").send();
 });
-bg = global.game_uis.bg;
-fg = global.game_uis.fg;
+bg = AirLibBG;
+fg = AirLibFG;
 roomsurf = undefined;
 dbg = dbg_view("Join", false, 10, 10);
 create_view_from_instance(self);
