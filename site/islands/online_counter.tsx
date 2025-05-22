@@ -1,5 +1,5 @@
 import { IS_BROWSER } from "$fresh/runtime.ts";
-let totalplayers:number = 0;
+let totalplayers: number = 0;
 const getPlayers = async () => {
   if (IS_BROWSER) {
     const resp = await fetch("/api/players");

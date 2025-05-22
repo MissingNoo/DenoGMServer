@@ -10,6 +10,7 @@ async function totalPlayers() {
   });
   return players;
 }
+// deno-lint-ignore no-explicit-any
 let players: any = "0";
 
 export const handler = (_req: Request, _ctx: FreshContext): Response => {

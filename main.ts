@@ -27,6 +27,7 @@ import {
   PlayerLogin,
   RegisterPlayer,
 } from "./mongo.ts";
+import { HandleChatCommand } from "./chat.ts";
 export const server = dgram.createSocket("udp4");
 redis.set("PlayerList", listPlayers().toString());
 const PORT = 36692;
@@ -161,13 +162,18 @@ server.on("message", (msg: any, rinfo: any) => {
         break;
 
       case "chatMessage": {
-        sendMessageToRoom(
-          player.room,
-          "chatMessage",
-          { player: data.player, message: data.message },
-          player,
-          true,
-        );
+        const msg: string = data.message;
+        if (msg.charAt(0) == "/") {
+          HandleChatCommand(player, msg);
+        } else {
+          sendMessageToRoom(
+            player.room,
+            "chatMessage",
+            { player: data.player, message: data.message },
+            player,
+            true,
+          );
+        }
         break;
       }
 

@@ -1,5 +1,5 @@
 import { MongoClient } from "npm:mongodb";
-import { findPlayerByName, Player, players } from "./Player.ts";
+import { findPlayerByName, Player } from "./Player.ts";
 import { sendMessage } from "./misc.ts";
 const mongo = new MongoClient(
   Deno.env.get("mongo") ?? "mongodb://127.0.0.1:27017",
