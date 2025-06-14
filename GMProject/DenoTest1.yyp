@@ -42,7 +42,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.1400.0.815",
+    "IDEVersion":"2024.1400.0.826",
   },
   "name":"DenoTest1",
   "resources":[
@@ -59,6 +59,7 @@
     {"id":{"name":"oEditableUI","path":"objects/oEditableUI/oEditableUI.yy",},},
     {"id":{"name":"oFriendRequest","path":"objects/oFriendRequest/oFriendRequest.yy",},},
     {"id":{"name":"oJoin","path":"objects/oJoin/oJoin.yy",},},
+    {"id":{"name":"oLoadUI","path":"objects/oLoadUI/oLoadUI.yy",},},
     {"id":{"name":"oLogin","path":"objects/oLogin/oLogin.yy",},},
     {"id":{"name":"oMainMenu","path":"objects/oMainMenu/oMainMenu.yy",},},
     {"id":{"name":"oOtherPlayer","path":"objects/oOtherPlayer/oOtherPlayer.yy",},},

@@ -658,6 +658,16 @@ top = {
           },
           "name":"button_tag_editor"
         },
+{
+          "width":60.0,
+          "data":{
+            text : "LoadUI",
+			f : function() {
+                instance_create_depth(0, 0, -6000, oLoadUI);
+			}
+          },
+          "name":"button_load_ui"
+        },
         //{
         //  "width":32.0,
         //  "data":{
