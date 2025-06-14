@@ -1,7 +1,8 @@
 #macro AirNet global.__airnet
 AirNet = {
-    ip : "127.0.0.1",
-    port : 36692,
+    //ip : "127.0.0.1",
+    ip : "337494.xyz",
+    port : 25577,
 	loggedin : false,
 	username : undefined,
 	friendlist : []

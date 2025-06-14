@@ -16,7 +16,6 @@ room_list_online_y = 25;
 room_list_scroll = 0;
 scrolltime = 0;
 code_input = new textbox();
-code_input.only_numbers = true;
 code_input.textcolor = "c_white";
 code_input.only_numbers = false;
 code_input.backtext = "Code Here";
