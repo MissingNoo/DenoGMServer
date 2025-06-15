@@ -621,7 +621,7 @@ function listbox() constructor {
 						true
 					);
 					txt.draw(openarea[0], _y);
-				offset += string_height_scribble(_str) / 3;
+				offset += txt.get_bbox().height;
 				if (openarea[3] < _y) {
 					openarea[3] = _y;
 				}
@@ -637,7 +637,9 @@ function gui_can_interact() {
 	return !global.listboxopen && AirLib.listframe < AirLib.frame;
 }
 
-global.currenttextbox = undefined;
+global.currenttextbox = {
+	selected : false
+};
 
 function string_contains(str, contain) {
 	for (var i = 1; i < string_length(str); ++i) {

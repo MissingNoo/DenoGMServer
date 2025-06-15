@@ -15,4 +15,5 @@ ui = new window(uistr);
 offset = 22;
 button_height = 22;
 dbg = dbg_view("Context Menu", false);
+depth = -9000;
 create_view_from_instance(self);

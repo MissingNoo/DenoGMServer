@@ -3,7 +3,7 @@ if (room != rUIEditor) {
 }
 
 if (keyboard_check_pressed(ord("F"))) {
-	if (!AirNet.loggedin) {
+	if (!AirNet.loggedin or global.currenttextbox.selected) {
 		exit;
 	}
 	if (!instance_exists(oFriendList)) {
