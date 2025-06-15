@@ -294,6 +294,9 @@ function textbox() constructor {
 					}
 				}
 			}
+			if (keyboard_lastkey != vk_space and keyboard_lastkey != vk_nokey) {
+				text = string_trim(text);
+			}
 			keyboard_lastchar = "";
 			keyboard_lastkey = vk_nokey;
 		}
