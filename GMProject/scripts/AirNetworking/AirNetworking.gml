@@ -1,8 +1,8 @@
 #macro AirNet global.__airnet
 AirNet = {
-    //ip : "127.0.0.1",
-    ip : "337494.xyz",
-    port : 25577,
+    ip : "127.0.0.1",
+    //ip : "337494.xyz",
+    port : 36692,
 	loggedin : false,
 	username : undefined,
 	friendlist : []
@@ -94,4 +94,19 @@ function player_context_menu(name) {
 		}
 	}));
 	ctn.add_button(fbutton);
+}
+
+function friend_context_menu(name) {
+	AirNet.search = name;
+	var ctn = new context_menu(name);
+	//var fbutton = new button("Add friend");
+	//fbutton.set_enabled(!array_contains(AirNet.friendlist, AirNet.search));
+	//fbutton.set_function(method(self, function() {
+		//if (!array_contains(AirNet.friendlist, AirNet.search)) {
+			//new packet("addFriend")
+			//.write("player", AirNet.search)
+			//.send();
+		//}
+	//}));
+	//ctn.add_button(fbutton);
 }

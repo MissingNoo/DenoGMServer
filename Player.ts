@@ -127,3 +127,4 @@ export function disconnectPlayer(player: Player) {
   console.log(`[Players] Player ${player.uuid} disconnected`);
   redis.set("PlayerList", listPlayers().toString());
 }
+

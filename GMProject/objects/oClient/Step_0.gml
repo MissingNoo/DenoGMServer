@@ -2,6 +2,16 @@ if (room != rUIEditor) {
 	//display_set_gui_size(window_get_width(), window_get_height());
 }
 
+if (keyboard_check_pressed(ord("F"))) {
+	if (!AirNet.loggedin) {
+		exit;
+	}
+	if (!instance_exists(oFriendList)) {
+		instance_create_depth(0, 0, -1000, oFriendList);
+	} else {
+		instance_destroy(oFriendList);
+	}
+}
 if (keyboard_check_pressed(ord("Z"))) {
 	debug_rooms();
 }

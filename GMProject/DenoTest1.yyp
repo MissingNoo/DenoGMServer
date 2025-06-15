@@ -57,6 +57,7 @@
     {"id":{"name":"oContextMenu","path":"objects/oContextMenu/oContextMenu.yy",},},
     {"id":{"name":"oCreate","path":"objects/oCreate/oCreate.yy",},},
     {"id":{"name":"oEditableUI","path":"objects/oEditableUI/oEditableUI.yy",},},
+    {"id":{"name":"oFriendList","path":"objects/oFriendList/oFriendList.yy",},},
     {"id":{"name":"oFriendRequest","path":"objects/oFriendRequest/oFriendRequest.yy",},},
     {"id":{"name":"oJoin","path":"objects/oJoin/oJoin.yy",},},
     {"id":{"name":"oLoadUI","path":"objects/oLoadUI/oLoadUI.yy",},},
